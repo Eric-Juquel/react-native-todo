@@ -1,7 +1,8 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
-import {useDispatch} from 'react-redux';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {deleteTask, loadTasks} from '../../redux/task-actions';
+import {RootState} from '../../redux/store';
 
 interface Props {
   task: {
@@ -16,10 +17,22 @@ interface Props {
 const TaskItem: React.FC<Props> = ({task}) => {
   const dispatch = useDispatch();
 
+  const {
+    loading,
+    error,
+    success,
+    task: deletedTask,
+  } = useSelector<RootState, any>(state => state.deleteTask);
+
   const deleteHandler = () => {
     dispatch(deleteTask(task));
-    dispatch(loadTasks());
   };
+
+  useEffect(() => {
+    if (success) {
+      dispatch(loadTasks());
+    }
+  }, [dispatch, success]);
 
   return (
     <View style={styles.card}>
