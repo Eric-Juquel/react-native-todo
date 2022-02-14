@@ -8,7 +8,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {Provider} from 'react-redux';
 import store from './redux/store';
 
@@ -18,6 +18,7 @@ import {
   StyleSheet,
   useColorScheme,
   View,
+  Button,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -33,6 +34,8 @@ const App = () => {
     height: '100%',
   };
 
+  const [addModal, setAddModal] = useState(false);
+
   return (
     <Provider store={store}>
       <SafeAreaView style={backgroundStyle}>
@@ -40,7 +43,8 @@ const App = () => {
         <Header />
         <View style={styles.container}>
           <TaskList />
-          <AddTask />
+          <AddTask visible={addModal} setVisible={setAddModal} />
+          <Button title="Add New Task" onPress={() => setAddModal(true)} />
         </View>
       </SafeAreaView>
     </Provider>

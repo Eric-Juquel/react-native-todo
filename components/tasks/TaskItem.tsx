@@ -1,4 +1,10 @@
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {deleteTask, loadTasks} from '../../redux/task-actions';
@@ -17,12 +23,7 @@ interface Props {
 const TaskItem: React.FC<Props> = ({task}) => {
   const dispatch = useDispatch();
 
-  const {
-    loading,
-    error,
-    success,
-    task: deletedTask,
-  } = useSelector<RootState, any>(state => state.deleteTask);
+  const {success} = useSelector<RootState, any>(state => state.deleteTask);
 
   const deleteHandler = () => {
     dispatch(deleteTask(task));
@@ -35,14 +36,16 @@ const TaskItem: React.FC<Props> = ({task}) => {
   }, [dispatch, success]);
 
   return (
-    <View style={styles.card}>
-      <View style={styles.task}>
-        <Text style={styles.title}>{task.title}</Text>
+    <TouchableOpacity>
+      <View style={styles.card}>
+        <View style={styles.task}>
+          <Text style={styles.title}>{task.title}</Text>
+        </View>
+        <Pressable onPress={deleteHandler}>
+          <Text>X</Text>
+        </Pressable>
       </View>
-      <Pressable onPress={deleteHandler}>
-        <Text>X</Text>
-      </Pressable>
-    </View>
+    </TouchableOpacity>
   );
 };
 
