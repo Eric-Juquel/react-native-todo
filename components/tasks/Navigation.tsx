@@ -1,26 +1,32 @@
-import {Button, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useState} from 'react';
-import colors from '../../lib/colors';
+import React from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-const Navigation = () => {
-  const [active, setActive] = useState('All');
+interface Props {
+  completed: boolean | null;
+  setCompleted: React.Dispatch<React.SetStateAction<boolean | null>>;
+}
 
+const Navigation: React.FC<Props> = ({completed, setCompleted}) => {
   return (
     <View style={styles.navContainer}>
-      <TouchableOpacity style={styles.button} onPress={() => setActive('All')}>
-        <Text style={active === 'All' ? styles.active : styles.text}>All</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => setCompleted(null)}>
+        <Text style={completed === null ? styles.active : styles.text}>
+          All
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => setActive('Active')}>
-        <Text style={active === 'Active' ? styles.active : styles.text}>
+        onPress={() => setCompleted(false)}>
+        <Text style={completed === false ? styles.active : styles.text}>
           Active
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => setActive('Completed')}>
-        <Text style={active === 'Completed' ? styles.active : styles.text}>
+        onPress={() => setCompleted(true)}>
+        <Text style={completed === true ? styles.active : styles.text}>
           Completed
         </Text>
       </TouchableOpacity>

@@ -56,7 +56,7 @@ const TaskItem: React.FC<Props> = ({task}) => {
 
   useEffect(() => {
     if (success || updatedSuccess) {
-      dispatch(loadTasks());
+      dispatch(loadTasks(null));
     }
   }, [dispatch, success, updatedSuccess]);
 

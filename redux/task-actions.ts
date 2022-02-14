@@ -33,7 +33,9 @@ export interface LoadFailAction extends Action<typeof LOAD_TASKS_FAIL> {
 }
 
 export const loadTasks =
-  (): ThunkAction<
+  (
+    filter: boolean | null,
+  ): ThunkAction<
     Promise<void>,
     RootState,
     undefined,
@@ -44,8 +46,14 @@ export const loadTasks =
       type: LOAD_TASKS_REQUEST,
     });
 
+    let link = 'http://localhost:3001/tasks';
+
+    if (filter !== null) {
+      link = link.concat(`?completed=${filter}`);
+    }
+
     try {
-      const response = await fetch('http://localhost:3001/tasks');
+      const response = await fetch(link);
       const tasks: Task[] = await response.json();
 
       dispatch({

@@ -39,7 +39,7 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
       completed: false,
     };
     dispatch(addTask(newTask));
-    dispatch(loadTasks());
+    dispatch(loadTasks(null));
     setEnteredTask('');
     setVisible(false);
   };
