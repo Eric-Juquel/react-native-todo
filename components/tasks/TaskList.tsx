@@ -5,21 +5,26 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../redux/store';
 import {loadTasks} from '../../redux/task-actions';
 import {Task} from '../../redux/task-reducers';
+import colors from '../../lib/colors';
+import Navigation from './Navigation';
 
 const TaskList = () => {
   const dispatch = useDispatch();
   const {tasks} = useSelector<RootState, any>(state => state.loadedTasks);
 
   useEffect(() => {
-    if (!tasks.length) {
+    if (!tasks) {
       dispatch(loadTasks());
     }
-  }, [dispatch, tasks.length]);
+  }, [dispatch, tasks]);
 
   const renderTask = ({item}: {item: Task}) => <TaskItem task={item} />;
 
   return (
     <View style={styles.taskList}>
+      <View>
+        <Navigation />
+      </View>
       <View style={styles.titleContainer}>
         <Text style={styles.tasksTitle}>Your Tasks</Text>
       </View>
@@ -37,14 +42,15 @@ export default TaskList;
 const styles = StyleSheet.create({
   taskList: {
     alignItems: 'center',
-    height: '70%',
+    height: '90%',
   },
   titleContainer: {
-    height: '10%',
+    height: 60,
     width: 300,
+    marginTop: 15,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'orange',
+    backgroundColor: colors.backgroundTitle,
     borderRadius: 5,
     marginBottom: 15,
   },

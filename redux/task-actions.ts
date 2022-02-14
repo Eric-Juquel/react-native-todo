@@ -15,6 +15,8 @@ import {
   LOAD_TASKS_FAIL,
   LOAD_TASKS_REQUEST,
   LOAD_TASKS_SUCCESS,
+  RESET_DELETE_ACTION,
+  RESET_UPDATE_ACTION,
   UPDATE_TASK_FAIL,
   UPDATE_TASK_REQUEST,
   UPDATE_TASK_SUCCESS,
@@ -114,6 +116,7 @@ export interface DeleteSuccessAction
 export interface DeleteFailAction extends Action<typeof DELETE_TASK_FAIL> {
   payload: string;
 }
+export interface ResetDeleteAction extends Action<typeof RESET_DELETE_ACTION> {}
 
 export const deleteTask =
   (
@@ -122,7 +125,10 @@ export const deleteTask =
     Promise<void>,
     RootState,
     undefined,
-    DeleteRequestAction | DeleteSuccessAction | DeleteFailAction
+    | DeleteRequestAction
+    | DeleteSuccessAction
+    | DeleteFailAction
+    | ResetDeleteAction
   > =>
   async dispatch => {
     dispatch({type: DELETE_TASK_REQUEST});
@@ -140,6 +146,7 @@ export const deleteTask =
             task,
           },
         });
+        dispatch({type: RESET_DELETE_ACTION});
       }
     } catch (error) {
       dispatch({
@@ -196,6 +203,7 @@ export interface UpdateSuccessAction
 export interface UpdateFailAction extends Action<typeof UPDATE_TASK_FAIL> {
   payload: string;
 }
+export interface ResetUpdateAction extends Action<typeof RESET_UPDATE_ACTION> {}
 
 export const updateTask =
   (
@@ -204,7 +212,10 @@ export const updateTask =
     Promise<void>,
     RootState,
     undefined,
-    UpdateRequestAction | UpdateSuccessAction | UpdateFailAction
+    | UpdateRequestAction
+    | UpdateSuccessAction
+    | UpdateFailAction
+    | ResetUpdateAction
   > =>
   async dispatch => {
     dispatch({type: UPDATE_TASK_REQUEST});
@@ -227,6 +238,7 @@ export const updateTask =
           task: updatedTask,
         },
       });
+      dispatch({type: RESET_UPDATE_ACTION});
     } catch (error) {
       dispatch({
         type: UPDATE_TASK_FAIL,

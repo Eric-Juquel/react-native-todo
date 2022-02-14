@@ -15,25 +15,18 @@
       "id": 2
     },
     {
-      "title": "Another task",
+      "title": "Another Task",
       "description": "Some New Description",
-      "date": "2022-02-14T08:52:30.461Z",
+      "date": "2022-02-14T14:21:11.713Z",
       "completed": false,
       "id": 3
     },
     {
-      "title": "Test Modal",
+      "title": "Hello",
       "description": "Some New Description",
-      "date": "2022-02-14T10:05:46.736Z",
+      "date": "2022-02-14T15:34:12.703Z",
       "completed": false,
       "id": 4
-    },
-    {
-      "title": "New Test",
-      "description": "Some New Description",
-      "date": "2022-02-14T10:06:16.134Z",
-      "completed": false,
-      "id": 5
     }
   ]
 }

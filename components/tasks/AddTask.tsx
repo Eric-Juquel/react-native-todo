@@ -1,4 +1,12 @@
-import {Button, StyleSheet, TextInput, View, Modal} from 'react-native';
+import {
+  Button,
+  StyleSheet,
+  TextInput,
+  View,
+  Modal,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 import React, {useState} from 'react';
 import {addTask, loadTasks} from '../../redux/task-actions';
 import {useDispatch} from 'react-redux';
@@ -38,26 +46,31 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
 
   return (
     <Modal visible={visible} animationType="slide">
-      <View style={styles.inputContainer}>
-        <TextInput
-          placeholder="Enter a Task"
-          style={styles.taskInput}
-          onChangeText={taskInputHandler}
-          value={enteredTask}
-        />
-        <View style={styles.buttonGrp}>
-          <View style={styles.button}>
-            <Button
-              title="Cancel"
-              color="orangered"
-              onPress={cancelAddTaskHandler}
-            />
-          </View>
-          <View style={styles.button}>
-            <Button title="Add Task" onPress={addTaskHandler} />
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}>
+        <View style={styles.inputContainer}>
+          <TextInput
+            placeholder="Enter a Task"
+            style={styles.taskInput}
+            onChangeText={taskInputHandler}
+            value={enteredTask}
+          />
+          <View style={styles.buttonGrp}>
+            <View style={styles.button}>
+              <Button
+                title="Cancel"
+                color="orangered"
+                onPress={cancelAddTaskHandler}
+              />
+            </View>
+            <View style={styles.button}>
+              <Button title="Add Task" onPress={addTaskHandler} />
+            </View>
           </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 };

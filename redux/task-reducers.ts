@@ -11,6 +11,8 @@ import {
   LoadFailAction,
   LoadRequestAction,
   LoadSuccessAction,
+  ResetDeleteAction,
+  ResetUpdateAction,
   UpdateFailAction,
   UpdateRequestAction,
   UpdateSuccessAction,
@@ -28,6 +30,8 @@ import {
   LOAD_TASKS_FAIL,
   LOAD_TASKS_REQUEST,
   LOAD_TASKS_SUCCESS,
+  RESET_DELETE_ACTION,
+  RESET_UPDATE_ACTION,
   UPDATE_TASK_FAIL,
   UPDATE_TASK_REQUEST,
   UPDATE_TASK_SUCCESS,
@@ -114,7 +118,11 @@ export const addTaskReducer = (
 
 export const deleteTaskReducer = (
   state: TasksState = initialState,
-  action: DeleteRequestAction | DeleteSuccessAction | DeleteFailAction,
+  action:
+    | DeleteRequestAction
+    | DeleteSuccessAction
+    | DeleteFailAction
+    | ResetDeleteAction,
 ) => {
   switch (action.type) {
     case DELETE_TASK_REQUEST:
@@ -133,6 +141,12 @@ export const deleteTaskReducer = (
       return {
         ...state,
         error: action.payload,
+      };
+    case RESET_DELETE_ACTION:
+      return {
+        ...state,
+        success: false,
+        error: false,
       };
     default:
       return state;
@@ -167,7 +181,11 @@ export const getTaskDetailsReducer = (
 
 export const updatetaskReducer = (
   state: TasksState = initialState,
-  action: UpdateRequestAction | UpdateSuccessAction | UpdateFailAction,
+  action:
+    | UpdateRequestAction
+    | UpdateSuccessAction
+    | UpdateFailAction
+    | ResetUpdateAction,
 ) => {
   switch (action.type) {
     case UPDATE_TASK_REQUEST:
@@ -185,6 +203,12 @@ export const updatetaskReducer = (
       return {
         ...state,
         error: action.payload,
+      };
+    case RESET_UPDATE_ACTION:
+      return {
+        ...state,
+        success: false,
+        error: false,
       };
     default:
       return state;

@@ -52,20 +52,8 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  header: {
-    marginTop: 0,
-    padding: 30,
-    textAlign: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: '500',
-    textAlign: 'center',
-  },
   container: {
-    minHeight: '100%',
-    padding: 30,
-    marginTop: 0,
+    flex: 1,
   },
 });
 
