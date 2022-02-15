@@ -9,7 +9,8 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {addTask, loadTasks} from '../../redux/task-actions';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '../../redux/store';
 
 interface Props {
   visible: boolean;
@@ -18,6 +19,9 @@ interface Props {
 
 const AddTask: React.FC<Props> = ({visible, setVisible}) => {
   const dispatch = useDispatch();
+
+  const {filter} = useSelector<RootState, any>(state => state.setFilter);
+
   const [enteredTask, setEnteredTask] = useState('');
 
   const taskInputHandler = (enteredText: string) => {
@@ -39,7 +43,7 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
       completed: false,
     };
     dispatch(addTask(newTask));
-    dispatch(loadTasks(null));
+    dispatch(loadTasks(filter));
     setEnteredTask('');
     setVisible(false);
   };

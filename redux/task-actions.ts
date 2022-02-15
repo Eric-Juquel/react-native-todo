@@ -17,6 +17,7 @@ import {
   LOAD_TASKS_SUCCESS,
   RESET_DELETE_ACTION,
   RESET_UPDATE_ACTION,
+  SET_FILTER,
   UPDATE_TASK_FAIL,
   UPDATE_TASK_REQUEST,
   UPDATE_TASK_SUCCESS,
@@ -253,4 +254,19 @@ export const updateTask =
         payload: 'Failed to update task',
       });
     }
+  };
+
+export interface SetFilter extends Action<typeof SET_FILTER> {
+  payload: boolean | null;
+}
+
+export const setFilter =
+  (
+    filter: boolean | null,
+  ): ThunkAction<Promise<void>, RootState, undefined, SetFilter> =>
+  async dispatch => {
+    dispatch({
+      type: SET_FILTER,
+      payload: filter,
+    });
   };

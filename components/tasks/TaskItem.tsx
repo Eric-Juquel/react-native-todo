@@ -27,6 +27,8 @@ const TaskItem: React.FC<Props> = ({task}) => {
   const dispatch = useDispatch();
   const [isCompleted, setIsCompleted] = useState(task.completed);
 
+  const {filter} = useSelector<RootState, any>(state => state.setFilter);
+
   const {success} = useSelector<RootState, any>(state => state.deleteTask);
 
   const {success: updatedSuccess} = useSelector<RootState, any>(
@@ -56,9 +58,9 @@ const TaskItem: React.FC<Props> = ({task}) => {
 
   useEffect(() => {
     if (success || updatedSuccess) {
-      dispatch(loadTasks(null));
+      dispatch(loadTasks(filter));
     }
-  }, [dispatch, success, updatedSuccess]);
+  }, [dispatch, success, updatedSuccess, filter]);
 
   return (
     <TouchableOpacity>

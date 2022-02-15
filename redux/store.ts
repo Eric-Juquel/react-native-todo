@@ -6,6 +6,7 @@ import {
   deleteTaskReducer,
   getTaskDetailsReducer,
   loadTasksReducer,
+  setFilterReducer,
   updatetaskReducer,
 } from './task-reducers';
 
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   deleteTask: deleteTaskReducer,
   taskDetails: getTaskDetailsReducer,
   updateTask: updatetaskReducer,
+  setFilter: setFilterReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

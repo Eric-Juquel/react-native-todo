@@ -4,7 +4,7 @@
       "title": "Finir l’app",
       "description": "Some New Description",
       "date": "2022-02-11T12:28:37.273Z",
-      "completed": true,
+      "completed": false,
       "id": 1
     },
     {
@@ -20,13 +20,6 @@
       "date": "2022-02-14T14:21:11.713Z",
       "completed": false,
       "id": 3
-    },
-    {
-      "title": "Hello",
-      "description": "Some New Description",
-      "date": "2022-02-14T15:34:12.703Z",
-      "completed": false,
-      "id": 4
     }
   ]
 }

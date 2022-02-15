@@ -1,32 +1,31 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import {RootState} from '../../redux/store';
+import {setFilter} from '../../redux/task-actions';
 
-interface Props {
-  completed: boolean | null;
-  setCompleted: React.Dispatch<React.SetStateAction<boolean | null>>;
-}
+const Navigation = () => {
+  const dispatch = useDispatch();
 
-const Navigation: React.FC<Props> = ({completed, setCompleted}) => {
+  const {filter} = useSelector<RootState, any>(state => state.setFilter);
   return (
     <View style={styles.navContainer}>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => setCompleted(null)}>
-        <Text style={completed === null ? styles.active : styles.text}>
-          All
-        </Text>
+        onPress={() => dispatch(setFilter(null))}>
+        <Text style={filter === null ? styles.active : styles.text}>All</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => setCompleted(false)}>
-        <Text style={completed === false ? styles.active : styles.text}>
+        onPress={() => dispatch(setFilter(false))}>
+        <Text style={filter === false ? styles.active : styles.text}>
           Active
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => setCompleted(true)}>
-        <Text style={completed === true ? styles.active : styles.text}>
+        onPress={() => dispatch(setFilter(true))}>
+        <Text style={filter === true ? styles.active : styles.text}>
           Completed
         </Text>
       </TouchableOpacity>

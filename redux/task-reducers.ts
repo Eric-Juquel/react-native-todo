@@ -13,6 +13,7 @@ import {
   LoadSuccessAction,
   ResetDeleteAction,
   ResetUpdateAction,
+  SetFilter,
   UpdateFailAction,
   UpdateRequestAction,
   UpdateSuccessAction,
@@ -32,6 +33,7 @@ import {
   LOAD_TASKS_SUCCESS,
   RESET_DELETE_ACTION,
   RESET_UPDATE_ACTION,
+  SET_FILTER,
   UPDATE_TASK_FAIL,
   UPDATE_TASK_REQUEST,
   UPDATE_TASK_SUCCESS,
@@ -52,6 +54,14 @@ interface TasksState {
   success: boolean;
   error: string | null;
 }
+
+interface FilterState {
+  filter: boolean | null;
+}
+
+const initialFilter: FilterState = {
+  filter: null,
+};
 
 const initialState: TasksState = {
   tasks: [],
@@ -209,6 +219,20 @@ export const updatetaskReducer = (
         ...state,
         success: false,
         error: false,
+      };
+    default:
+      return state;
+  }
+};
+
+export const setFilterReducer = (
+  state: FilterState = initialFilter,
+  action: SetFilter,
+) => {
+  switch (action.type) {
+    case SET_FILTER:
+      return {
+        filter: action.payload,
       };
     default:
       return state;
