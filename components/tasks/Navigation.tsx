@@ -11,21 +11,44 @@ const Navigation = () => {
   return (
     <View style={styles.navContainer}>
       <TouchableOpacity
-        style={styles.button}
+        style={
+          filter === null
+            ? {...styles.button, ...styles.buttonActive}
+            : styles.button
+        }
         onPress={() => dispatch(setFilter(null))}>
-        <Text style={filter === null ? styles.active : styles.text}>All</Text>
+        <Text
+          style={
+            filter === null ? {...styles.text, ...styles.active} : styles.text
+          }>
+          All
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.button}
+        style={
+          filter === false
+            ? {...styles.button, ...styles.buttonActive}
+            : styles.button
+        }
         onPress={() => dispatch(setFilter(false))}>
-        <Text style={filter === false ? styles.active : styles.text}>
+        <Text
+          style={
+            filter === false ? {...styles.text, ...styles.active} : styles.text
+          }>
           Active
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.button}
+        style={
+          filter === true
+            ? {...styles.button, ...styles.buttonActive}
+            : styles.button
+        }
         onPress={() => dispatch(setFilter(true))}>
-        <Text style={filter === true ? styles.active : styles.text}>
+        <Text
+          style={
+            filter === true ? {...styles.text, ...styles.active} : styles.text
+          }>
           Completed
         </Text>
       </TouchableOpacity>
@@ -37,21 +60,28 @@ export default Navigation;
 
 const styles = StyleSheet.create({
   navContainer: {
-    width: 350,
+    width: 370,
     marginTop: 5,
     padding: 5,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
-  button: {width: 80},
+  button: {
+    width: 85,
+    height: 25,
+    justifyContent: 'center',
+  },
+  buttonActive: {
+    backgroundColor: 'grey',
+    borderRadius: 5,
+  },
   text: {
-    color: '#5b5b5b',
+    textAlign: 'center',
     fontSize: 15,
     fontWeight: '200',
+    color: '#5b5b5b',
   },
   active: {
-    color: '#070707',
-    textDecorationLine: 'underline',
-    textDecorationStyle: 'solid',
+    color: 'white',
   },
 });

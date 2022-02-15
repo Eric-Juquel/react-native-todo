@@ -4,7 +4,7 @@
       "title": "Finir l’app",
       "description": "Some New Description",
       "date": "2022-02-11T12:28:37.273Z",
-      "completed": false,
+      "completed": true,
       "id": 1
     },
     {
@@ -17,9 +17,44 @@
     {
       "title": "Another Task",
       "description": "Some New Description",
-      "date": "2022-02-14T14:21:11.713Z",
+      "date": "2022-02-15T13:02:14.700Z",
       "completed": false,
       "id": 3
+    },
+    {
+      "title": "More Task",
+      "description": "Some New Description",
+      "date": "2022-02-15T13:02:30.453Z",
+      "completed": false,
+      "id": 4
+    },
+    {
+      "title": "Task again",
+      "description": "Some New Description",
+      "date": "2022-02-15T13:02:53.741Z",
+      "completed": false,
+      "id": 5
+    },
+    {
+      "title": "Task",
+      "description": "Some New Description",
+      "date": "2022-02-15T13:03:03.012Z",
+      "completed": false,
+      "id": 6
+    },
+    {
+      "title": "Redux",
+      "description": "Some New Description",
+      "date": "2022-02-15T13:03:12.980Z",
+      "completed": false,
+      "id": 7
+    },
+    {
+      "title": "Filter",
+      "description": "Some New Description",
+      "date": "2022-02-15T13:03:20.188Z",
+      "completed": false,
+      "id": 8
     }
   ]
 }
