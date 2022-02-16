@@ -2,12 +2,12 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {RootState} from '../../redux/store';
-import {setFilter} from '../../redux/task-actions';
+import {setFilter} from '../../redux/actions/filter-actions';
 
 const Navigation = () => {
   const dispatch = useDispatch();
 
-  const {filter} = useSelector<RootState, any>(state => state.setFilter);
+  const {filter} = useSelector<RootState, any>(state => state.filterState);
   return (
     <View style={styles.navContainer}>
       <TouchableOpacity

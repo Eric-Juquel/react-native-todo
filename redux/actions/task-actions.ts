@@ -1,36 +1,32 @@
 import {Action} from 'redux';
 import {ThunkAction} from 'redux-thunk';
-import {RootState} from './store';
-import {Task} from './task-reducers';
+import {RootState} from '../store';
+import {Task} from '../reducers/task-reducer';
 import {
-  CREATE_TASK_FAIL,
-  CREATE_TASK_REQUEST,
-  CREATE_TASK_SUCCESS,
-  DELETE_TASK_FAIL,
-  DELETE_TASK_REQUEST,
-  DELETE_TASK_SUCCESS,
-  GET_TASK_FAIL,
-  GET_TASK_REQUEST,
-  GET_TASK_SUCCESS,
-  LOAD_TASKS_FAIL,
-  LOAD_TASKS_REQUEST,
+  TASKS_ACTION_REQUEST,
   LOAD_TASKS_SUCCESS,
-  RESET_DELETE_ACTION,
-  RESET_UPDATE_ACTION,
-  SET_FILTER,
-  UPDATE_TASK_FAIL,
-  UPDATE_TASK_REQUEST,
+  CREATE_TASK_SUCCESS,
+  GET_TASK_SUCCESS,
+  DELETE_TASK_SUCCESS,
   UPDATE_TASK_SUCCESS,
-} from './tasksConstants';
+  TASKS_ACTION_FAIL,
+  RESET_STATE_ACTION,
+} from '../constants';
+
+// Request acions
+export interface RequestAction extends Action<typeof TASKS_ACTION_REQUEST> {}
+
+// Fail actions
+export interface FailAction extends Action<typeof TASKS_ACTION_FAIL> {
+  payload: string;
+}
+
+// Reset success and error
+export interface ResetStateAction extends Action<typeof RESET_STATE_ACTION> {}
 
 // Load Tasks
-
-export interface LoadRequestAction extends Action<typeof LOAD_TASKS_REQUEST> {}
 export interface LoadSuccessAction extends Action<typeof LOAD_TASKS_SUCCESS> {
   payload: Task[];
-}
-export interface LoadFailAction extends Action<typeof LOAD_TASKS_FAIL> {
-  payload: string;
 }
 
 export const loadTasks =
@@ -40,11 +36,11 @@ export const loadTasks =
     Promise<void>,
     RootState,
     undefined,
-    LoadRequestAction | LoadSuccessAction | LoadFailAction
+    RequestAction | LoadSuccessAction | FailAction
   > =>
   async dispatch => {
     dispatch({
-      type: LOAD_TASKS_REQUEST,
+      type: TASKS_ACTION_REQUEST,
     });
 
     let link = 'http://localhost:3001/tasks';
@@ -63,19 +59,15 @@ export const loadTasks =
       });
     } catch (error) {
       dispatch({
-        type: LOAD_TASKS_FAIL,
+        type: TASKS_ACTION_FAIL,
         payload: 'Failed to fetch tasks',
       });
     }
   };
 
 // addTask
-export interface AddRequestAction extends Action<typeof CREATE_TASK_REQUEST> {}
 export interface AddSuccessAction extends Action<typeof CREATE_TASK_SUCCESS> {
   payload: {success: boolean; task: Task};
-}
-export interface AddFailAction extends Action<typeof CREATE_TASK_FAIL> {
-  payload: string;
 }
 
 export const addTask =
@@ -85,10 +77,10 @@ export const addTask =
     Promise<void>,
     RootState,
     undefined,
-    AddRequestAction | AddSuccessAction | AddFailAction
+    RequestAction | AddSuccessAction | FailAction
   > =>
   async dispatch => {
-    dispatch({type: CREATE_TASK_REQUEST});
+    dispatch({type: TASKS_ACTION_REQUEST});
 
     try {
       const response = await fetch('http://localhost:3001/tasks', {
@@ -109,23 +101,17 @@ export const addTask =
       });
     } catch (error) {
       dispatch({
-        type: CREATE_TASK_FAIL,
+        type: TASKS_ACTION_FAIL,
         payload: 'Failed to create task.',
       });
     }
   };
 
 // Delete Task
-export interface DeleteRequestAction
-  extends Action<typeof DELETE_TASK_REQUEST> {}
 export interface DeleteSuccessAction
   extends Action<typeof DELETE_TASK_SUCCESS> {
   payload: {success: boolean; task: Task};
 }
-export interface DeleteFailAction extends Action<typeof DELETE_TASK_FAIL> {
-  payload: string;
-}
-export interface ResetDeleteAction extends Action<typeof RESET_DELETE_ACTION> {}
 
 export const deleteTask =
   (
@@ -134,13 +120,10 @@ export const deleteTask =
     Promise<void>,
     RootState,
     undefined,
-    | DeleteRequestAction
-    | DeleteSuccessAction
-    | DeleteFailAction
-    | ResetDeleteAction
+    RequestAction | DeleteSuccessAction | FailAction | ResetStateAction
   > =>
   async dispatch => {
-    dispatch({type: DELETE_TASK_REQUEST});
+    dispatch({type: TASKS_ACTION_REQUEST});
 
     try {
       const response = await fetch(`http://localhost:3001/tasks/${task.id}`, {
@@ -155,23 +138,19 @@ export const deleteTask =
             task,
           },
         });
-        dispatch({type: RESET_DELETE_ACTION});
+        dispatch({type: RESET_STATE_ACTION});
       }
     } catch (error) {
       dispatch({
-        type: DELETE_TASK_FAIL,
+        type: TASKS_ACTION_FAIL,
         payload: 'Failed to delete task',
       });
     }
   };
 
 // Get Task details
-export interface DetailsRequestAction extends Action<typeof GET_TASK_REQUEST> {}
 export interface DetailsSuccessAction extends Action<typeof GET_TASK_SUCCESS> {
   payload: Task;
-}
-export interface DetailsFailAction extends Action<typeof GET_TASK_FAIL> {
-  payload: string;
 }
 
 export const getTaskDetails =
@@ -181,10 +160,10 @@ export const getTaskDetails =
     Promise<void>,
     RootState,
     undefined,
-    DetailsRequestAction | DetailsSuccessAction | DetailsFailAction
+    RequestAction | DetailsSuccessAction | FailAction
   > =>
   async dispatch => {
-    dispatch({type: GET_TASK_REQUEST});
+    dispatch({type: TASKS_ACTION_REQUEST});
 
     try {
       const response = await fetch(`http://localhost:3001/tasks/${taskId}`);
@@ -196,23 +175,17 @@ export const getTaskDetails =
       });
     } catch (error) {
       dispatch({
-        type: GET_TASK_FAIL,
+        type: TASKS_ACTION_FAIL,
         payload: 'fetch task details failed.',
       });
     }
   };
 
 // Update Task
-export interface UpdateRequestAction
-  extends Action<typeof UPDATE_TASK_REQUEST> {}
 export interface UpdateSuccessAction
   extends Action<typeof UPDATE_TASK_SUCCESS> {
   payload: {success: boolean; task: Task};
 }
-export interface UpdateFailAction extends Action<typeof UPDATE_TASK_FAIL> {
-  payload: string;
-}
-export interface ResetUpdateAction extends Action<typeof RESET_UPDATE_ACTION> {}
 
 export const updateTask =
   (
@@ -221,13 +194,10 @@ export const updateTask =
     Promise<void>,
     RootState,
     undefined,
-    | UpdateRequestAction
-    | UpdateSuccessAction
-    | UpdateFailAction
-    | ResetUpdateAction
+    RequestAction | UpdateSuccessAction | FailAction | ResetStateAction
   > =>
   async dispatch => {
-    dispatch({type: UPDATE_TASK_REQUEST});
+    dispatch({type: TASKS_ACTION_REQUEST});
 
     try {
       const response = await fetch(`http://localhost:3001/tasks/${task.id}`, {
@@ -247,26 +217,11 @@ export const updateTask =
           task: updatedTask,
         },
       });
-      dispatch({type: RESET_UPDATE_ACTION});
+      dispatch({type: RESET_STATE_ACTION});
     } catch (error) {
       dispatch({
-        type: UPDATE_TASK_FAIL,
+        type: TASKS_ACTION_FAIL,
         payload: 'Failed to update task',
       });
     }
-  };
-
-export interface SetFilter extends Action<typeof SET_FILTER> {
-  payload: boolean | null;
-}
-
-export const setFilter =
-  (
-    filter: boolean | null,
-  ): ThunkAction<Promise<void>, RootState, undefined, SetFilter> =>
-  async dispatch => {
-    dispatch({
-      type: SET_FILTER,
-      payload: filter,
-    });
   };

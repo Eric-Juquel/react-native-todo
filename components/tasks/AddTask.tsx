@@ -8,7 +8,7 @@ import {
   Keyboard,
 } from 'react-native';
 import React, {useState} from 'react';
-import {addTask, loadTasks} from '../../redux/task-actions';
+import {addTask, loadTasks} from '../../redux/actions/task-actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../redux/store';
 
@@ -20,19 +20,19 @@ interface Props {
 const AddTask: React.FC<Props> = ({visible, setVisible}) => {
   const dispatch = useDispatch();
 
-  const {filter} = useSelector<RootState, any>(state => state.setFilter);
+  const {filter} = useSelector<RootState, any>(state => state.filterState);
 
   const [enteredTask, setEnteredTask] = useState('');
 
-  const taskInputHandler = (enteredText: string) => {
+  function taskInputHandler(enteredText: string) {
     setEnteredTask(enteredText);
-  };
+  }
 
-  const cancelAddTaskHandler = () => {
+  function cancelAddTaskHandler() {
     setVisible(false);
-  };
+  }
 
-  const addTaskHandler = () => {
+  function addTaskHandler() {
     if (enteredTask === '') {
       return;
     }
@@ -46,7 +46,7 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
     dispatch(loadTasks(filter));
     setEnteredTask('');
     setVisible(false);
-  };
+  }
 
   return (
     <Modal visible={visible} animationType="slide">

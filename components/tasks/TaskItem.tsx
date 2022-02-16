@@ -9,7 +9,11 @@ import {
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {deleteTask, loadTasks, updateTask} from '../../redux/task-actions';
+import {
+  deleteTask,
+  loadTasks,
+  updateTask,
+} from '../../redux/actions/task-actions';
 import {RootState} from '../../redux/store';
 import colors from '../../lib/colors';
 
@@ -27,40 +31,36 @@ const TaskItem: React.FC<Props> = ({task}) => {
   const dispatch = useDispatch();
   const [isCompleted, setIsCompleted] = useState(task.completed);
 
-  const {filter} = useSelector<RootState, any>(state => state.setFilter);
+  const {filter} = useSelector<RootState, any>(state => state.filterState);
 
-  const {success} = useSelector<RootState, any>(state => state.deleteTask);
+  const {success} = useSelector<RootState, any>(state => state.tasksState);
 
-  const {success: updatedSuccess} = useSelector<RootState, any>(
-    state => state.updateTask,
-  );
-
-  const deleteHandler = () => {
+  function deleteHandler() {
     dispatch(deleteTask(task));
-  };
+  }
 
-  const closeHandler = () => {
+  function closeHandler() {
     return;
-  };
+  }
 
-  const confirmDeleteHandler = () => {
+  function confirmDeleteHandler() {
     Alert.alert('would you like to delete this task ?', '', [
       {text: 'Yes', style: 'default', onPress: deleteHandler},
       {text: 'No', style: 'cancel', onPress: closeHandler},
     ]);
-  };
+  }
 
-  const updateCompletedHandler = () => {
+  function updateCompletedHandler() {
     const updatedTask = {...task, completed: !isCompleted};
     dispatch(updateTask(updatedTask));
     setIsCompleted(() => !isCompleted);
-  };
+  }
 
   useEffect(() => {
-    if (success || updatedSuccess) {
+    if (success) {
       dispatch(loadTasks(filter));
     }
-  }, [dispatch, success, updatedSuccess, filter]);
+  }, [dispatch, success, filter]);
 
   return (
     <TouchableOpacity>
@@ -80,7 +80,7 @@ const TaskItem: React.FC<Props> = ({task}) => {
           <Text style={styles.title}>{task.title}</Text>
         </View>
         <Pressable onPress={confirmDeleteHandler}>
-          <Text>X</Text>
+          <Text style={styles.delete}>X</Text>
         </Pressable>
       </View>
     </TouchableOpacity>
@@ -117,4 +117,5 @@ const styles = StyleSheet.create({
   },
   completed: {borderColor: 'teal'},
   pending: {borderColor: 'orangered'},
+  delete: {color: 'red', fontSize: 20},
 });

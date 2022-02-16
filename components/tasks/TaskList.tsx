@@ -3,16 +3,16 @@ import React, {useEffect} from 'react';
 import TaskItem from './TaskItem';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../redux/store';
-import {loadTasks} from '../../redux/task-actions';
-import {Task} from '../../redux/task-reducers';
+import {loadTasks} from '../../redux/actions/task-actions';
+import {Task} from '../../redux/reducers/task-reducer';
 import colors from '../../lib/colors';
 import Navigation from './Navigation';
 
 const TaskList = () => {
   const dispatch = useDispatch();
-  const {tasks} = useSelector<RootState, any>(state => state.loadedTasks);
+  const {tasks} = useSelector<RootState, any>(state => state.tasksState);
 
-  const {filter} = useSelector<RootState, any>(state => state.setFilter);
+  const {filter} = useSelector<RootState, any>(state => state.filterState);
 
   useEffect(() => {
     dispatch(loadTasks(filter));
