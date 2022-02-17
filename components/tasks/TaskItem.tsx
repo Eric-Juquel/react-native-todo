@@ -11,11 +11,22 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   deleteTask,
+  getTaskDetails,
   loadTasks,
   updateTask,
 } from '../../redux/actions/task-actions';
 import {RootState} from '../../redux/store';
 import colors from '../../lib/colors';
+import {useNavigation} from '@react-navigation/native';
+import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../../App';
+import {Task} from '../../redux/reducers/task-reducer';
+import Icon from 'react-native-vector-icons/Entypo';
+
+type DetailscreenNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Details'
+>;
 
 interface Props {
   task: {
@@ -28,7 +39,11 @@ interface Props {
 }
 
 const TaskItem: React.FC<Props> = ({task}) => {
+  const navigation = useNavigation<DetailscreenNavigationProp>();
   const dispatch = useDispatch();
+
+  const trashIcon = <Icon name="trash" size={22} color="#900" />;
+
   const [isCompleted, setIsCompleted] = useState(task.completed);
 
   const {filter} = useSelector<RootState, any>(state => state.filterState);
@@ -56,6 +71,12 @@ const TaskItem: React.FC<Props> = ({task}) => {
     setIsCompleted(() => !isCompleted);
   }
 
+  function showTaskDetails(taskId: Task['id']) {
+    console.log('id', taskId);
+    dispatch(getTaskDetails(taskId));
+    navigation.navigate('Details');
+  }
+
   useEffect(() => {
     if (success) {
       dispatch(loadTasks(filter));
@@ -63,7 +84,7 @@ const TaskItem: React.FC<Props> = ({task}) => {
   }, [dispatch, success, filter]);
 
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => showTaskDetails(task.id)}>
       <View style={styles.card}>
         <View>
           <BouncyCheckbox
@@ -80,7 +101,7 @@ const TaskItem: React.FC<Props> = ({task}) => {
           <Text style={styles.title}>{task.title}</Text>
         </View>
         <Pressable onPress={confirmDeleteHandler}>
-          <Text style={styles.delete}>X</Text>
+          <Text>{trashIcon}</Text>
         </Pressable>
       </View>
     </TouchableOpacity>
@@ -116,6 +137,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   completed: {borderColor: 'teal'},
-  pending: {borderColor: 'orangered'},
+  pending: {borderColor: '#0093ff'},
   delete: {color: 'red', fontSize: 20},
 });

@@ -22,32 +22,11 @@
       "id": 4
     },
     {
-      "title": "Task again",
-      "description": "Some New Description",
-      "date": "2022-02-15T13:02:53.741Z",
-      "completed": true,
-      "id": 5
-    },
-    {
       "title": "Task",
       "description": "Some New Description",
       "date": "2022-02-15T13:03:03.012Z",
       "completed": false,
       "id": 6
-    },
-    {
-      "title": "Redux",
-      "description": "Some New Description",
-      "date": "2022-02-15T13:03:12.980Z",
-      "completed": false,
-      "id": 7
-    },
-    {
-      "title": "Test New Redux State",
-      "description": "Some New Description",
-      "date": "2022-02-16T13:25:41.996Z",
-      "completed": false,
-      "id": 8
     }
   ]
 }

@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, {useState} from 'react';
+import React from 'react';
 import {Provider} from 'react-redux';
 import store from './redux/store';
 
@@ -18,13 +18,19 @@ import {
   StyleSheet,
   useColorScheme,
   View,
-  Button,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Header from './components/layout/Header';
-import AddTask from './components/tasks/AddTask';
-import TaskList from './components/tasks/TaskList';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+import TaskDetailScreen from './components/tasks/TaskDetailScreen';
+import HomeScreen from './components/tasks/HomeScreen';
+
+export type RootStackParamList = {
+  Home: undefined;
+  Details: undefined;
+};
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -34,19 +40,22 @@ const App = () => {
     height: '100%',
   };
 
-  const [addModal, setAddModal] = useState(false);
+  const Stack = createNativeStackNavigator();
 
   return (
     <Provider store={store}>
-      <SafeAreaView style={backgroundStyle}>
-        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <Header />
-        <View style={styles.container}>
-          <TaskList />
-          <AddTask visible={addModal} setVisible={setAddModal} />
-          <Button title="Add New Task" onPress={() => setAddModal(true)} />
-        </View>
-      </SafeAreaView>
+      <NavigationContainer>
+        <SafeAreaView style={backgroundStyle}>
+          <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+          <Header />
+          <View style={styles.container}>
+            <Stack.Navigator initialRouteName="Home">
+              <Stack.Screen name="Home" component={HomeScreen} />
+              <Stack.Screen name="Details" component={TaskDetailScreen} />
+            </Stack.Navigator>
+          </View>
+        </SafeAreaView>
+      </NavigationContainer>
     </Provider>
   );
 };
