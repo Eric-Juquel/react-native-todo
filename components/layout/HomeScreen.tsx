@@ -1,7 +1,7 @@
 import {Button} from 'react-native';
 import React, {useState} from 'react';
-import TaskList from './TaskList';
-import AddTask from './AddTask';
+import TaskList from '../tasks/TaskList';
+import AddTask from '../tasks/AddTask';
 
 const HomeScreen = () => {
   const [addModal, setAddModal] = useState(false);

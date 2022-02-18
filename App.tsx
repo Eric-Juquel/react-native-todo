@@ -24,8 +24,8 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Header from './components/layout/Header';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-import TaskDetailScreen from './components/tasks/TaskDetailScreen';
-import HomeScreen from './components/tasks/HomeScreen';
+import TaskDetailScreen from './components/layout/TaskDetailScreen';
+import HomeScreen from './components/layout/HomeScreen';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -33,7 +33,7 @@ export type RootStackParamList = {
 };
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === 'light';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,

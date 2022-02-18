@@ -1,12 +1,4 @@
-import {
-  Alert,
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {
@@ -14,14 +6,15 @@ import {
   getTaskDetails,
   loadTasks,
   updateTask,
-} from '../../redux/actions/task-actions';
-import {RootState} from '../../redux/store';
-import colors from '../../lib/colors';
+} from '../../../redux/actions/task-actions';
+import {RootState} from '../../../redux/store';
+import colors from '../../../lib/colors';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../../App';
-import {Task} from '../../redux/reducers/task-reducer';
-import Icon from 'react-native-vector-icons/Entypo';
+import {RootStackParamList} from '../../../App';
+import {Task} from '../../../redux/reducers/task-reducer';
+import TaskUpdate from './TaskUpdate';
+import TaskDelete from './TaskDelete';
 
 type DetailscreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -36,13 +29,13 @@ interface Props {
     date: string;
     completed: boolean;
   };
+  index: number;
 }
 
-const TaskItem: React.FC<Props> = ({task}) => {
+const TaskItem: React.FC<Props> = ({task, index}) => {
+  console.log('index', index);
   const navigation = useNavigation<DetailscreenNavigationProp>();
   const dispatch = useDispatch();
-
-  const trashIcon = <Icon name="trash" size={22} color="#900" />;
 
   const [isCompleted, setIsCompleted] = useState(task.completed);
 
@@ -86,23 +79,14 @@ const TaskItem: React.FC<Props> = ({task}) => {
   return (
     <TouchableOpacity onPress={() => showTaskDetails(task.id)}>
       <View style={styles.card}>
-        <View>
-          <BouncyCheckbox
-            size={25}
-            fillColor="teal"
-            unfillColor="#FFFFFF"
-            isChecked={isCompleted}
-            disableBuiltInState
-            iconStyle={isCompleted ? styles.completed : styles.pending}
-            onPress={updateCompletedHandler}
-          />
-        </View>
+        <TaskUpdate
+          completed={isCompleted}
+          updateCompleted={updateCompletedHandler}
+        />
         <View style={styles.task}>
           <Text style={styles.title}>{task.title}</Text>
         </View>
-        <Pressable onPress={confirmDeleteHandler}>
-          <Text>{trashIcon}</Text>
-        </Pressable>
+        <TaskDelete deleteItem={confirmDeleteHandler} />
       </View>
     </TouchableOpacity>
   );
@@ -136,7 +120,4 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'center',
   },
-  completed: {borderColor: 'teal'},
-  pending: {borderColor: '#0093ff'},
-  delete: {color: 'red', fontSize: 20},
 });

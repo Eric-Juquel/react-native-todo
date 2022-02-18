@@ -18,15 +18,8 @@
       "title": "More Task",
       "description": "Some New Description",
       "date": "2022-02-15T13:02:30.453Z",
-      "completed": true,
-      "id": 4
-    },
-    {
-      "title": "Task",
-      "description": "Some New Description",
-      "date": "2022-02-15T13:03:03.012Z",
       "completed": false,
-      "id": 6
+      "id": 4
     }
   ]
 }

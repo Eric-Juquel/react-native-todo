@@ -1,6 +1,6 @@
 import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
-import TaskItem from './TaskItem';
+import TaskItem from './task-item/TaskItem';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../redux/store';
 import {loadTasks} from '../../redux/actions/task-actions';
@@ -18,7 +18,9 @@ const TaskList = () => {
     dispatch(loadTasks(filter));
   }, [dispatch, filter]);
 
-  const renderTask = ({item}: {item: Task}) => <TaskItem task={item} />;
+  const renderTask = ({item, index}: {item: Task; index: number}) => (
+    <TaskItem task={item} index={index} />
+  );
 
   return (
     <View style={styles.taskList}>
