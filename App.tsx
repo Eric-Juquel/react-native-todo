@@ -26,6 +26,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import TaskDetailScreen from './components/layout/TaskDetailScreen';
 import HomeScreen from './components/layout/HomeScreen';
+import {NativeBaseProvider} from 'native-base';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -44,18 +45,22 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <SafeAreaView style={backgroundStyle}>
-          <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-          <Header />
-          <View style={styles.container}>
-            <Stack.Navigator initialRouteName="Home">
-              <Stack.Screen name="Home" component={HomeScreen} />
-              <Stack.Screen name="Details" component={TaskDetailScreen} />
-            </Stack.Navigator>
-          </View>
-        </SafeAreaView>
-      </NavigationContainer>
+      <NativeBaseProvider>
+        <NavigationContainer>
+          <SafeAreaView style={backgroundStyle}>
+            <StatusBar
+              barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+            />
+            <Header />
+            <View style={styles.container}>
+              <Stack.Navigator initialRouteName="Home">
+                <Stack.Screen name="Home" component={HomeScreen} />
+                <Stack.Screen name="Details" component={TaskDetailScreen} />
+              </Stack.Navigator>
+            </View>
+          </SafeAreaView>
+        </NavigationContainer>
+      </NativeBaseProvider>
     </Provider>
   );
 };

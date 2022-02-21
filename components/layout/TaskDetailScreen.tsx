@@ -8,20 +8,24 @@ const TaskDetailScreen = () => {
 
   return (
     <View style={styles.detailsContainer}>
-      <View>
-        <Text style={styles.title}>{task.title}</Text>
-      </View>
-      <View>
-        <Text style={styles.description}>{task.description}</Text>
-      </View>
-      <View>
-        <Text style={styles.date}>{task.date.split('T')[0]}</Text>
-      </View>
-      <View>
-        <Text style={task.completed ? styles.completed : styles.todo}>
-          {task.completed ? 'Done' : 'To Do'}
-        </Text>
-      </View>
+      {task && (
+        <>
+          <View>
+            <Text style={styles.title}>{task.title}</Text>
+          </View>
+          <View>
+            <Text style={styles.description}>{task.description}</Text>
+          </View>
+          <View>
+            <Text style={styles.date}>{task.date.split('T')[0]}</Text>
+          </View>
+          <View>
+            <Text style={task.completed ? styles.completed : styles.todo}>
+              {task.completed ? 'Done' : 'To Do'}
+            </Text>
+          </View>
+        </>
+      )}
     </View>
   );
 };

@@ -33,7 +33,7 @@ const TaskList = () => {
       <FlatList
         data={tasks}
         renderItem={renderTask}
-        keyExtractor={item => `${item.id}`}
+        keyExtractor={item => item.id.toString()}
       />
     </View>
   );

@@ -15,6 +15,7 @@ import {RootStackParamList} from '../../../App';
 import {Task} from '../../../redux/reducers/task-reducer';
 import TaskUpdate from './TaskUpdate';
 import TaskDelete from './TaskDelete';
+import NBTaskItem from './NBTaskItem';
 
 type DetailscreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -78,7 +79,7 @@ const TaskItem: React.FC<Props> = ({task, index}) => {
 
   return (
     <TouchableOpacity onPress={() => showTaskDetails(task.id)}>
-      <View style={styles.card}>
+      {/* <View style={styles.card}>
         <TaskUpdate
           completed={isCompleted}
           updateCompleted={updateCompletedHandler}
@@ -87,7 +88,12 @@ const TaskItem: React.FC<Props> = ({task, index}) => {
           <Text style={styles.title}>{task.title}</Text>
         </View>
         <TaskDelete deleteItem={confirmDeleteHandler} />
-      </View>
+      </View> */}
+      <NBTaskItem
+        item={task}
+        completed={isCompleted}
+        updateCompleted={updateCompletedHandler}
+      />
     </TouchableOpacity>
   );
 };
