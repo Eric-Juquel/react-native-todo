@@ -1,12 +1,7 @@
 import {TouchableOpacity} from 'react-native';
-import React, {useEffect, useState, memo} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {
-  getTaskDetails,
-  loadTasks,
-  updateTask,
-} from '../../../redux/actions/task-actions';
-import {RootState} from '../../../redux/store';
+import React, {useState, memo} from 'react';
+import {useDispatch} from 'react-redux';
+import {getTaskDetails, updateTask} from '../../../redux/actions/task-actions';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../../App';
@@ -35,10 +30,6 @@ const TaskItem: React.FC<Props> = ({task}) => {
 
   const [isCompleted, setIsCompleted] = useState(task.completed);
 
-  const {filter} = useSelector<RootState, any>(state => state.filterState);
-
-  const {success} = useSelector<RootState, any>(state => state.tasksState);
-
   function updateCompletedHandler() {
     const updatedTask = {...task, completed: !isCompleted};
     dispatch(updateTask(updatedTask));
@@ -49,12 +40,6 @@ const TaskItem: React.FC<Props> = ({task}) => {
     dispatch(getTaskDetails(taskId));
     navigation.navigate('Details');
   }
-
-  useEffect(() => {
-    if (success) {
-      dispatch(loadTasks(filter));
-    }
-  }, [dispatch, success, filter]);
 
   return (
     <TouchableOpacity onPress={() => showTaskDetails(task.id)}>
