@@ -55,7 +55,7 @@ export const loadTasks =
 
       dispatch({
         type: LOAD_TASKS_SUCCESS,
-        payload: tasks,
+        payload: tasks.reverse(),
       });
     } catch (error) {
       dispatch({

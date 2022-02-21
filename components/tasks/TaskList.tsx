@@ -7,6 +7,7 @@ import {loadTasks} from '../../redux/actions/task-actions';
 import {Task} from '../../redux/reducers/task-reducer';
 import colors from '../../lib/colors';
 import Navigation from './Navigation';
+import NBSwipeList from './NBSwipeList';
 
 const TaskList = () => {
   const dispatch = useDispatch();
@@ -30,11 +31,12 @@ const TaskList = () => {
       <View style={styles.titleContainer}>
         <Text style={styles.tasksTitle}>Your Tasks</Text>
       </View>
-      <FlatList
+      {/* <FlatList
         data={tasks}
         renderItem={renderTask}
         keyExtractor={item => item.id.toString()}
-      />
+      /> */}
+      <NBSwipeList tasks={tasks} />
     </View>
   );
 };
