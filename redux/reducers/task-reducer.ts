@@ -77,6 +77,11 @@ export const tasksReducer = (
       };
 
     case CREATE_TASK_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        tasks: [...state.tasks, action.payload.task],
+      };
     case DELETE_TASK_SUCCESS:
     case UPDATE_TASK_SUCCESS:
       return {

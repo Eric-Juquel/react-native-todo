@@ -1,27 +1,27 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
-import TaskItem from './task-item/TaskItem';
+
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../redux/store';
 import {loadTasks} from '../../redux/actions/task-actions';
-import {Task} from '../../redux/reducers/task-reducer';
+
 import colors from '../../lib/colors';
 import Navigation from './Navigation';
 import NBSwipeList from './NBSwipeList';
 
 const TaskList = () => {
   const dispatch = useDispatch();
-  const {tasks} = useSelector<RootState, any>(state => state.tasksState);
+  const {tasks, success} = useSelector<RootState, any>(
+    state => state.tasksState,
+  );
+
+  console.log('success', success);
 
   const {filter} = useSelector<RootState, any>(state => state.filterState);
 
   useEffect(() => {
     dispatch(loadTasks(filter));
-  }, [dispatch, filter]);
-
-  const renderTask = ({item, index}: {item: Task; index: number}) => (
-    <TaskItem task={item} index={index} />
-  );
+  }, [dispatch, filter, success]);
 
   return (
     <View style={styles.taskList}>
@@ -31,11 +31,6 @@ const TaskList = () => {
       <View style={styles.titleContainer}>
         <Text style={styles.tasksTitle}>Your Tasks</Text>
       </View>
-      {/* <FlatList
-        data={tasks}
-        renderItem={renderTask}
-        keyExtractor={item => item.id.toString()}
-      /> */}
       <NBSwipeList tasks={tasks} />
     </View>
   );

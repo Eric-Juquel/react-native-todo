@@ -67,7 +67,7 @@ export const loadTasks =
 
 // addTask
 export interface AddSuccessAction extends Action<typeof CREATE_TASK_SUCCESS> {
-  payload: {success: boolean; task: Task};
+  payload: {task: Task};
 }
 
 export const addTask =
@@ -95,7 +95,6 @@ export const addTask =
       dispatch({
         type: CREATE_TASK_SUCCESS,
         payload: {
-          success: true,
           task: createdTask,
         },
       });

@@ -1,18 +1,34 @@
-import React from 'react';
+import React, {memo} from 'react';
 import Icon from 'react-native-vector-icons/Entypo';
 import {HStack, Pressable, Text, VStack} from 'native-base';
+import {Task} from '../../../redux/reducers/task-reducer';
+import {deleteTask} from '../../../redux/actions/task-actions';
+import {useDispatch} from 'react-redux';
+import {Alert} from 'react-native';
 
 interface Props {
-  deleteItem(): void;
+  task: Task;
 }
 
-const TaskDelete: React.FC<Props> = ({deleteItem}) => {
-  const trashIcon = <Icon name="trash" size={22} color="#900" />;
+const TaskDelete: React.FC<Props> = ({task}) => {
+  const dispatch = useDispatch();
+
+  function deleteHandler() {
+    dispatch(deleteTask(task));
+  }
+
+  function closeHandler() {
+    return;
+  }
+
+  function confirmDeleteHandler() {
+    Alert.alert('would you like to delete this task ?', '', [
+      {text: 'Yes', style: 'default', onPress: deleteHandler},
+      {text: 'No', style: 'cancel', onPress: closeHandler},
+    ]);
+  }
 
   return (
-    // <Pressable onPress={deleteItem}>
-    //   <Text>{trashIcon}</Text>
-    // </Pressable>
     <HStack flex="1" pl="2" py="4">
       <Pressable
         ml="auto"
@@ -21,7 +37,7 @@ const TaskDelete: React.FC<Props> = ({deleteItem}) => {
         cursor="pointer"
         bg="red.500"
         justifyContent="center"
-        onPress={() => deleteRow(rowMap, data.item.key)}
+        onPress={confirmDeleteHandler}
         _pressed={{
           opacity: 0.5,
         }}>
@@ -37,4 +53,4 @@ const TaskDelete: React.FC<Props> = ({deleteItem}) => {
   );
 };
 
-export default TaskDelete;
+export default memo(TaskDelete);
