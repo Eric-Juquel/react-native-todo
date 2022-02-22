@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import {Task} from '../../redux/reducers/task-reducer';
 import {SwipeListView} from 'react-native-swipe-list-view';
 import {Box} from 'native-base';
@@ -10,6 +10,8 @@ interface Props {
 }
 
 const NBSwipeList: React.FC<Props> = ({tasks}) => {
+  const [rowOpen, setRowOpen] = useState<string | null>(null);
+
   const renderItem = useCallback(
     ({item, index}: {item: Task; index: number}) => (
       <TaskItem task={item} index={index} />
@@ -18,14 +20,20 @@ const NBSwipeList: React.FC<Props> = ({tasks}) => {
   );
 
   const renderHiddenItem = useCallback(
-    (data: any) => <TaskDelete task={data.item} />,
-    [],
+    (data: any) => <TaskDelete task={data.item} rowOpen={rowOpen} />,
+    [rowOpen],
   );
 
   const keyExtractor = useCallback((item: Task) => item.id.toString(), []);
 
-  const onRowDidOpen = (rowKey: string) => {
+  const onRowOpen = (rowKey: string) => {
     console.log('This row opened', rowKey);
+    setRowOpen(rowKey);
+  };
+
+  const onRowClose = (rowKey: string) => {
+    console.log('This row closed', rowKey);
+    setRowOpen(null);
   };
 
   return (
@@ -35,11 +43,12 @@ const NBSwipeList: React.FC<Props> = ({tasks}) => {
         renderItem={renderItem}
         renderHiddenItem={renderHiddenItem}
         keyExtractor={keyExtractor}
-        rightOpenValue={-130}
+        rightOpenValue={-80}
         previewRowKey={'0'}
         previewOpenValue={-40}
         previewOpenDelay={3000}
-        onRowDidOpen={onRowDidOpen}
+        onRowOpen={onRowOpen}
+        onRowClose={onRowClose}
       />
     </Box>
   );

@@ -32,6 +32,7 @@ const NBTaskItem: React.FC<Props> = ({item, completed, updateCompleted}) => {
           <Pressable
             rounded="xs"
             bg={completed ? 'teal.400' : 'primary.400'}
+            _pressed={{bg: completed ? 'teal.700' : 'primary.700'}}
             alignSelf="flex-start"
             py="1"
             px="3"

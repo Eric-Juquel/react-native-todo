@@ -20,6 +20,7 @@ interface Props {
     description: string;
     date: string;
     completed: boolean;
+    image: string;
   };
   index: number;
 }
@@ -27,6 +28,8 @@ interface Props {
 const TaskItem: React.FC<Props> = ({task}) => {
   const navigation = useNavigation<DetailscreenNavigationProp>();
   const dispatch = useDispatch();
+
+  // console.log('tasItem render', task.id);
 
   const [isCompleted, setIsCompleted] = useState(task.completed);
 

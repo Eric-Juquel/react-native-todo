@@ -15,7 +15,7 @@ const TaskList = () => {
     state => state.tasksState,
   );
 
-  console.log('success', success);
+  console.log('taskList render');
 
   const {filter} = useSelector<RootState, any>(state => state.filterState);
 

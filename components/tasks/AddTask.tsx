@@ -41,6 +41,7 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
       description: 'Some New Description',
       date: new Date().toISOString(),
       completed: false,
+      image: 'https://picsum.photos/200',
     };
     dispatch(addTask(newTask));
     dispatch(loadTasks(filter));

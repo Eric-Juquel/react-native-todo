@@ -1,6 +1,13 @@
 import React, {memo} from 'react';
 import Icon from 'react-native-vector-icons/Entypo';
-import {HStack, Pressable, Text, VStack} from 'native-base';
+import {
+  Center,
+  HStack,
+  PresenceTransition,
+  Pressable,
+  Text,
+  VStack,
+} from 'native-base';
 import {Task} from '../../../redux/reducers/task-reducer';
 import {deleteTask} from '../../../redux/actions/task-actions';
 import {useDispatch} from 'react-redux';
@@ -8,9 +15,10 @@ import {Alert} from 'react-native';
 
 interface Props {
   task: Task;
+  rowOpen: string | null;
 }
 
-const TaskDelete: React.FC<Props> = ({task}) => {
+const TaskDelete: React.FC<Props> = ({task, rowOpen}) => {
   const dispatch = useDispatch();
 
   function deleteHandler() {
@@ -29,26 +37,36 @@ const TaskDelete: React.FC<Props> = ({task}) => {
   }
 
   return (
-    <HStack flex="1" pl="2" py="4">
-      <Pressable
-        ml="auto"
-        rounded="xl"
-        w="70"
-        cursor="pointer"
-        bg="red.500"
-        justifyContent="center"
-        onPress={confirmDeleteHandler}
-        _pressed={{
-          opacity: 0.5,
+    <HStack flex="1" pl="2" py="4" ml="auto">
+      <PresenceTransition
+        visible={rowOpen === task.id.toString()}
+        initial={{
+          opacity: 0,
+          scale: 0,
+        }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+          transition: {
+            duration: 100,
+          },
         }}>
-        <VStack alignItems="center" space={2}>
-          <Icon name="trash" size={22} color="white" />
-          {/* <Icon as={<MaterialIcons name="delete" />} color="white" size="xs" /> */}
-          <Text color="white" fontSize="xs" fontWeight="medium">
-            Delete
-          </Text>
-        </VStack>
-      </Pressable>
+        <Center flex="1" rounded="xl" w="70" bg="red.500">
+          <Pressable
+            cursor="pointer"
+            onPress={confirmDeleteHandler}
+            _pressed={{
+              opacity: 0.5,
+            }}>
+            <VStack alignItems="center" space={2}>
+              <Icon name="trash" size={22} color="white" />
+              <Text color="white" fontSize="xs" fontWeight="medium">
+                Delete
+              </Text>
+            </VStack>
+          </Pressable>
+        </Center>
+      </PresenceTransition>
     </HStack>
   );
 };
