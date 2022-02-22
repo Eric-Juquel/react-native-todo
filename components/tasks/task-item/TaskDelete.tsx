@@ -37,7 +37,7 @@ const TaskDelete: React.FC<Props> = ({task, rowOpen}) => {
   }
 
   return (
-    <HStack flex="1" pl="2" py="3" ml="auto">
+    <HStack flex="1" pl="2" py="4" ml="auto">
       <PresenceTransition
         visible={rowOpen === task.id.toString()}
         initial={{
