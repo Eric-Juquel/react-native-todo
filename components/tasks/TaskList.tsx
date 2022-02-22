@@ -1,13 +1,12 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../redux/store';
 import {loadTasks} from '../../redux/actions/task-actions';
 
-import colors from '../../lib/colors';
 import Navigation from './Navigation';
 import NBSwipeList from './NBSwipeList';
+import {Box, Center, Heading} from 'native-base';
 
 const TaskList = () => {
   const dispatch = useDispatch();
@@ -24,36 +23,16 @@ const TaskList = () => {
   }, [dispatch, filter, success]);
 
   return (
-    <View style={styles.taskList}>
-      <View>
+    <Center flex={1}>
+      <Box>
         <Navigation />
-      </View>
-      <View style={styles.titleContainer}>
-        <Text style={styles.tasksTitle}>Your Tasks</Text>
-      </View>
+      </Box>
+      <Center height={60} width={350} my="2" bg="warning.300" rounded="md">
+        <Heading fontWeight={300}>Your Tasks</Heading>
+      </Center>
       <NBSwipeList tasks={tasks} />
-    </View>
+    </Center>
   );
 };
 
 export default TaskList;
-
-const styles = StyleSheet.create({
-  taskList: {
-    alignItems: 'center',
-    height: '90%',
-  },
-  titleContainer: {
-    height: 60,
-    width: 350,
-    marginTop: 15,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.backgroundTitle,
-    borderRadius: 5,
-    marginBottom: 15,
-  },
-  tasksTitle: {
-    fontSize: 17,
-  },
-});
