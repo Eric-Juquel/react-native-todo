@@ -57,7 +57,12 @@ const App = () => {
               barStyle={isDarkMode ? 'light-content' : 'dark-content'}
             />
             <View style={styles.container}>
-              <Stack.Navigator initialRouteName="Home">
+              <Stack.Navigator
+                initialRouteName="Home"
+                screenOptions={{
+                  headerStyle: {backgroundColor: 'black'},
+                  headerTintColor: 'white',
+                }}>
                 <Stack.Screen name="Home" component={HomeScreen} />
                 <Stack.Screen name="Details" component={TaskDetailScreen} />
               </Stack.Navigator>

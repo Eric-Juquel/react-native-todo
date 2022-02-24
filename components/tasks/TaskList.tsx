@@ -19,16 +19,24 @@ const TaskList = () => {
   const {filter} = useSelector<RootState, any>(state => state.filterState);
 
   useEffect(() => {
+    // console.log('useEffect load tasks');
     dispatch(loadTasks(filter));
   }, [dispatch, filter, success]);
 
+  console.log('tasks', tasks, 'filter', filter);
   return (
     <Center flex={1}>
       <Box>
         <Navigation />
       </Box>
       <Center height={60} width={350} my="2" bg="warning.300" rounded="md">
-        <Heading fontWeight={300}>Your Tasks</Heading>
+        <Heading fontWeight={300}>
+          {filter === null
+            ? 'All Tasks'
+            : filter === true
+            ? 'Completed Tasks'
+            : 'Active Tasks'}
+        </Heading>
       </Center>
       <NBSwipeList tasks={tasks} />
     </Center>

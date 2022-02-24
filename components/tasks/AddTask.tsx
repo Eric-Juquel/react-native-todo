@@ -1,7 +1,5 @@
 import {
-  Button,
   StyleSheet,
-  TextInput,
   View,
   Modal,
   TouchableWithoutFeedback,
@@ -11,6 +9,16 @@ import React, {useState} from 'react';
 import {addTask, loadTasks} from '../../redux/actions/task-actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../redux/store';
+import {
+  Box,
+  Button,
+  Center,
+  HStack,
+  IconButton,
+  Input,
+  TextArea,
+  VStack,
+} from 'native-base';
 
 interface Props {
   visible: boolean;
@@ -26,6 +34,10 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
 
   function taskInputHandler(enteredText: string) {
     setEnteredTask(enteredText);
+  }
+
+  function taskDescriptionHandler() {
+    console.log('textarea');
   }
 
   function cancelAddTaskHandler() {
@@ -55,26 +67,46 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
         onPress={() => {
           Keyboard.dismiss();
         }}>
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder="Enter a Task"
-            style={styles.taskInput}
-            onChangeText={taskInputHandler}
-            value={enteredTask}
-          />
-          <View style={styles.buttonGrp}>
-            <View style={styles.button}>
+        <Box bg="black" flex={1} alignItems="center" pt={32}>
+          <VStack w={250} h={400} justifyContent="space-evenly">
+            <Input
+              isFullWidth
+              size={'lg'}
+              variant="underlined"
+              placeholder="Enter a Task"
+              onChangeText={taskInputHandler}
+              value={enteredTask}
+            />
+            <TextArea
+              isFullWidth
+              size={'lg'}
+              h={150}
+              placeholder="Enter a Description"
+              onChange={taskDescriptionHandler}
+              value={enteredTask}
+            />
+            <HStack w={250} justifyContent="space-between" mt={5}>
               <Button
-                title="Cancel"
-                color="orangered"
-                onPress={cancelAddTaskHandler}
-              />
-            </View>
-            <View style={styles.button}>
-              <Button title="Add Task" onPress={addTaskHandler} />
-            </View>
-          </View>
-        </View>
+                colorScheme="danger"
+                variant="ghost"
+                w={100}
+                size="md"
+                onPress={cancelAddTaskHandler}>
+                Cancel
+              </Button>
+
+              <View style={styles.button}>
+                <Button
+                  variant="ghost"
+                  w={100}
+                  size="md"
+                  onPress={addTaskHandler}>
+                  Add Task
+                </Button>
+              </View>
+            </HStack>
+          </VStack>
+        </Box>
       </TouchableWithoutFeedback>
     </Modal>
   );
@@ -83,22 +115,6 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
 export default AddTask;
 
 const styles = StyleSheet.create({
-  inputContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  taskInput: {
-    width: 300,
-    borderBottomColor: 'black',
-    borderBottomWidth: 1,
-    marginBottom: 10,
-  },
-  buttonGrp: {
-    width: 250,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
   button: {
     width: 100,
   },

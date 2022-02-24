@@ -29,7 +29,7 @@ const TaskItem: React.FC<Props> = ({task}) => {
   const navigation = useNavigation<DetailscreenNavigationProp>();
   const dispatch = useDispatch();
 
-  // console.log('tasItem render', task.id);
+  console.log('tasItem render', task.id);
 
   const [isCompleted, setIsCompleted] = useState(task.completed);
 

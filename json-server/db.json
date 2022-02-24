@@ -44,7 +44,7 @@
       "title": "Work on Details",
       "description": "Some New Description",
       "date": "2022-02-21T17:37:37.617Z",
-      "completed": true,
+      "completed": false,
       "image": "https://picsum.photos/200",
       "id": 7
     },
@@ -52,7 +52,7 @@
       "title": "Add image on Add task",
       "description": "Some New Description",
       "date": "2022-02-21T17:37:55.688Z",
-      "completed": true,
+      "completed": false,
       "image": "https://picsum.photos/200",
       "id": 8
     },
@@ -81,9 +81,9 @@
       "id": 11
     },
     {
-      "title": "More Action on details",
+      "title": "Add Dark Mode",
       "description": "Some New Description",
-      "date": "2022-02-22T16:50:00.357Z",
+      "date": "2022-02-24T15:08:35.600Z",
       "completed": false,
       "image": "https://picsum.photos/200",
       "id": 12

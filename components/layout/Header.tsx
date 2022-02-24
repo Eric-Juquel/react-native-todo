@@ -9,17 +9,17 @@ interface Props {
 const Header: React.FC<Props> = ({setAddModal}) => {
   return (
     <HStack
-      bg="indigo.100"
+      bg="black"
       height={70}
       alignItems="center"
-      justifyContent="space-evenly">
-      <Heading size="lg" fontWeight={300}>
-        ⚠️En chantier⚠️
+      justifyContent="space-between">
+      <Heading size="lg" fontWeight={300} color="white" ml={2}>
+        ⚠️ Work In Progress ⚠️
       </Heading>
       <Fab
         renderInPortal={false}
         shadow={2}
-        bottom={2}
+        bottom={'auto'}
         size="sm"
         bg={'blueGray.500'}
         icon={<Icon color="white" name="plus" size={26} />}

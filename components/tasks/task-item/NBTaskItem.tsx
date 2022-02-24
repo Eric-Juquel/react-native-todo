@@ -47,7 +47,6 @@ const NBTaskItem: React.FC<Props> = ({item, completed, updateCompleted}) => {
           </Box>
           <Image
             bg="white"
-            shadow={7}
             source={{
               uri: 'https://picsum.photos/200',
             }}
