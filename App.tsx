@@ -60,8 +60,8 @@ const App = () => {
               <Stack.Navigator
                 initialRouteName="Home"
                 screenOptions={{
-                  headerStyle: {backgroundColor: 'black'},
-                  headerTintColor: 'white',
+                  headerStyle: {backgroundColor: '#1a1a1a'},
+                  headerTintColor: '#FFFF',
                 }}>
                 <Stack.Screen name="Home" component={HomeScreen} />
                 <Stack.Screen name="Details" component={TaskDetailScreen} />

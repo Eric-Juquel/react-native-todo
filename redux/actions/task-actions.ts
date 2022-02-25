@@ -39,7 +39,7 @@ export const loadTasks =
     RequestAction | LoadSuccessAction | FailAction
   > =>
   async dispatch => {
-    console.log('loadTasks action');
+    // console.log('loadTasks action');
     dispatch({
       type: TASKS_ACTION_REQUEST,
     });
@@ -54,14 +54,14 @@ export const loadTasks =
       const response = await fetch(link);
       const tasks: Task[] = await response.json();
 
-      console.log('sucess');
+      // console.log('sucess');
 
       dispatch({
         type: LOAD_TASKS_SUCCESS,
         payload: tasks.reverse(),
       });
     } catch (error) {
-      console.log('error', error);
+      // console.log('error', error);
       dispatch({
         type: TASKS_ACTION_FAIL,
         payload: 'Failed to fetch tasks',

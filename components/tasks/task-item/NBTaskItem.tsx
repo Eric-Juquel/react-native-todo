@@ -40,7 +40,7 @@ const NBTaskItem: React.FC<Props> = ({item, completed, updateCompleted}) => {
               <Text fontSize="sm" color="white">
                 {item.date.split('T')[0]}
               </Text>
-              <Text color="white" fontSize="xl">
+              <Text color="white" fontSize="19">
                 {item.title}
               </Text>
             </VStack>

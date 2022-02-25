@@ -17,7 +17,7 @@ const TaskDetailScreen = () => {
 
   return (
     task && (
-      <Center flex={1}>
+      <Center flex={1} bg="light.200">
         <Box
           maxW="80"
           rounded="lg"

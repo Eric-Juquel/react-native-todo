@@ -14,7 +14,7 @@ const TaskList = () => {
     state => state.tasksState,
   );
 
-  console.log('taskList render');
+  // console.log('taskList render');
 
   const {filter} = useSelector<RootState, any>(state => state.filterState);
 
@@ -23,7 +23,7 @@ const TaskList = () => {
     dispatch(loadTasks(filter));
   }, [dispatch, filter, success]);
 
-  console.log('tasks', tasks, 'filter', filter);
+  // console.log('tasks', tasks, 'filter', filter);
   return (
     <Center flex={1}>
       <Box>

@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import {Task} from '../../redux/reducers/task-reducer';
 import {SwipeListView} from 'react-native-swipe-list-view';
-import {Center, ScrollView} from 'native-base';
+import {Center} from 'native-base';
 import TaskItem from './task-item/TaskItem';
 import TaskDelete from './task-item/TaskDelete';
 
@@ -37,22 +37,20 @@ const NBSwipeList: React.FC<Props> = ({tasks}) => {
   };
 
   return (
-    <ScrollView width="365">
-      <Center flex={1}>
-        <SwipeListView
-          data={tasks}
-          renderItem={renderItem}
-          renderHiddenItem={renderHiddenItem}
-          keyExtractor={keyExtractor}
-          rightOpenValue={-80}
-          previewRowKey={'0'}
-          previewOpenValue={-40}
-          previewOpenDelay={3000}
-          onRowOpen={onRowOpen}
-          onRowClose={onRowClose}
-        />
-      </Center>
-    </ScrollView>
+    <Center flex={1}>
+      <SwipeListView
+        data={tasks}
+        renderItem={renderItem}
+        renderHiddenItem={renderHiddenItem}
+        keyExtractor={keyExtractor}
+        rightOpenValue={-80}
+        previewRowKey={'0'}
+        previewOpenValue={-40}
+        previewOpenDelay={3000}
+        onRowOpen={onRowOpen}
+        onRowClose={onRowClose}
+      />
+    </Center>
   );
 };
 

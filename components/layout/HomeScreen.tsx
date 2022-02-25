@@ -7,7 +7,7 @@ import {Box} from 'native-base';
 const HomeScreen = () => {
   const [addModal, setAddModal] = useState<boolean>(false);
   return (
-    <Box bg="black" flex={1}>
+    <Box bg="light.200" flex={1}>
       <Header setAddModal={setAddModal} />
       <TaskList />
       <AddTask visible={addModal} setVisible={setAddModal} />

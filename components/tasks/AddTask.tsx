@@ -1,28 +1,19 @@
-import {
-  StyleSheet,
-  View,
-  Modal,
-  TouchableWithoutFeedback,
-  Keyboard,
-} from 'react-native';
-import React, {useState} from 'react';
+import {TouchableWithoutFeedback, Keyboard} from 'react-native';
+import React from 'react';
 import {addTask, loadTasks} from '../../redux/actions/task-actions';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../redux/store';
-import {
-  Box,
-  Button,
-  Center,
-  HStack,
-  IconButton,
-  Input,
-  TextArea,
-  VStack,
-} from 'native-base';
+import {Modal, Button, Input, TextArea, Text} from 'native-base';
+import {useForm, Controller} from 'react-hook-form';
 
 interface Props {
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+interface FormData {
+  title: string;
+  description: string;
 }
 
 const AddTask: React.FC<Props> = ({visible, setVisible}) => {
@@ -30,92 +21,97 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
 
   const {filter} = useSelector<RootState, any>(state => state.filterState);
 
-  const [enteredTask, setEnteredTask] = useState('');
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: {errors},
+  } = useForm<FormData>({
+    defaultValues: {
+      title: '',
+      description: '',
+    },
+  });
 
-  function taskInputHandler(enteredText: string) {
-    setEnteredTask(enteredText);
-  }
+  console.log('errors', errors);
 
-  function taskDescriptionHandler() {
-    console.log('textarea');
-  }
-
-  function cancelAddTaskHandler() {
-    setVisible(false);
-  }
-
-  function addTaskHandler() {
-    if (enteredTask === '') {
-      return;
-    }
+  const onSubmit = (data: FormData) => {
     const newTask = {
-      title: enteredTask,
-      description: 'Some New Description',
+      title: data.title,
+      description: data.description,
       date: new Date().toISOString(),
       completed: false,
       image: 'https://picsum.photos/200',
     };
     dispatch(addTask(newTask));
     dispatch(loadTasks(filter));
-    setEnteredTask('');
+    reset();
+    setVisible(false);
+  };
+
+  function cancelAddTaskHandler() {
     setVisible(false);
   }
 
   return (
-    <Modal visible={visible} animationType="slide">
+    <Modal isOpen={visible} onClose={() => setVisible(false)}>
       <TouchableWithoutFeedback
         onPress={() => {
           Keyboard.dismiss();
         }}>
-        <Box bg="black" flex={1} alignItems="center" pt={32}>
-          <VStack w={250} h={400} justifyContent="space-evenly">
-            <Input
-              isFullWidth
-              size={'lg'}
-              variant="underlined"
-              placeholder="Enter a Task"
-              onChangeText={taskInputHandler}
-              value={enteredTask}
+        <Modal.Content maxWidth="400px" mt={-260}>
+          <Modal.CloseButton />
+          <Modal.Header>New Task</Modal.Header>
+          <Modal.Body>
+            <Text>Title</Text>
+            <Controller
+              control={control}
+              render={({field: {onChange, value}}) => (
+                <Input
+                  isFullWidth
+                  size={'lg'}
+                  onChangeText={onChange}
+                  value={value}
+                />
+              )}
+              name="title"
+              rules={{required: true}}
             />
-            <TextArea
-              isFullWidth
-              size={'lg'}
-              h={150}
-              placeholder="Enter a Description"
-              onChange={taskDescriptionHandler}
-              value={enteredTask}
+            {errors.title && (
+              <Text italic color="red.500">
+                Title is required.
+              </Text>
+            )}
+            <Text>Description</Text>
+            <Controller
+              control={control}
+              render={({field: {onChange, value}}) => (
+                <TextArea
+                  isFullWidth
+                  size={'lg'}
+                  h={150}
+                  onChangeText={onChange}
+                  value={value}
+                />
+              )}
+              name="description"
             />
-            <HStack w={250} justifyContent="space-between" mt={5}>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button.Group space={2}>
               <Button
-                colorScheme="danger"
                 variant="ghost"
-                w={100}
-                size="md"
+                colorScheme="blueGray"
                 onPress={cancelAddTaskHandler}>
                 Cancel
               </Button>
-
-              <View style={styles.button}>
-                <Button
-                  variant="ghost"
-                  w={100}
-                  size="md"
-                  onPress={addTaskHandler}>
-                  Add Task
-                </Button>
-              </View>
-            </HStack>
-          </VStack>
-        </Box>
+              <Button onPress={handleSubmit(onSubmit)}>Save</Button>
+            </Button.Group>
+          </Modal.Footer>
+        </Modal.Content>
       </TouchableWithoutFeedback>
     </Modal>
   );
 };
 
 export default AddTask;
-
-const styles = StyleSheet.create({
-  button: {
-    width: 100,
-  },
-});
