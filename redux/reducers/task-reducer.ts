@@ -26,6 +26,7 @@ export interface Task {
   date: string;
   completed: boolean;
   image: string;
+  deadLine: string;
 }
 
 interface TasksState {

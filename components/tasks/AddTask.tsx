@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../redux/store';
 import {Modal, Button, Input, TextArea, Text} from 'native-base';
 import {useForm, Controller} from 'react-hook-form';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 interface Props {
   visible: boolean;
@@ -14,6 +15,7 @@ interface Props {
 interface FormData {
   title: string;
   description: string;
+  deadLine: Date;
 }
 
 const AddTask: React.FC<Props> = ({visible, setVisible}) => {
@@ -30,18 +32,21 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
     defaultValues: {
       title: '',
       description: '',
+      deadLine: new Date(Date.now()),
     },
   });
 
   console.log('errors', errors);
 
   const onSubmit = (data: FormData) => {
+    console.log(data);
     const newTask = {
       title: data.title,
       description: data.description,
       date: new Date().toISOString(),
       completed: false,
       image: 'https://picsum.photos/200',
+      deadLine: data.deadLine.toISOString(),
     };
     dispatch(addTask(newTask));
     dispatch(loadTasks(filter));
@@ -89,12 +94,28 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
                 <TextArea
                   isFullWidth
                   size={'lg'}
-                  h={150}
+                  h={100}
                   onChangeText={onChange}
                   value={value}
                 />
               )}
               name="description"
+            />
+
+            <Text>Dead Line: </Text>
+            <Controller
+              control={control}
+              render={({field}) => (
+                <DateTimePicker
+                  value={field.value}
+                  display="default"
+                  mode="date"
+                  onChange={(e: Event, date?: Date | undefined) =>
+                    field.onChange(date)
+                  }
+                />
+              )}
+              name="deadLine"
             />
           </Modal.Body>
           <Modal.Footer>

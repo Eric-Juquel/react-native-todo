@@ -87,14 +87,6 @@
       "completed": false,
       "image": "https://picsum.photos/200",
       "id": 12
-    },
-    {
-      "title": "Test",
-      "description": "",
-      "date": "2022-02-25T15:50:19.764Z",
-      "completed": false,
-      "image": "https://picsum.photos/200",
-      "id": 13
     }
   ]
 }
