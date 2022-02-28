@@ -1,6 +1,7 @@
 import {Box, HStack, Image, Pressable, Text, VStack, ZStack} from 'native-base';
 import React from 'react';
 import {Task} from '../../redux/features/tasksSlice';
+import TimeProgress from './TimeProgress';
 
 interface Props {
   item: Task;
@@ -29,33 +30,34 @@ const NBTaskItem: React.FC<Props> = ({item, completed, updateCompleted}) => {
                 },
               }
         }
-        width="100%"
-        py="4"
+        w={'100%'}
+        h={95}
+        py="2"
         px="3"
-        rounded="md"
-        maxWidth="100%">
-        <HStack justifyContent="space-between">
-          <Box justifyContent="space-between">
-            <VStack>
-              <Text fontSize="sm" color="white">
-                {item.date.split('T')[0]}
-              </Text>
-              <Text color="white" fontSize="19">
-                {item.title}
-              </Text>
-            </VStack>
-          </Box>
-          <Image
-            bg="white"
-            source={{
-              uri: 'https://picsum.photos/200',
-            }}
-            alt="Lorem Picsum"
-            height="70"
-            rounded="full"
-            width="70"
+        rounded="md">
+        <VStack justifyContent="space-between" h={'100%'}>
+          <TimeProgress
+            startDate={item.date}
+            endDate={item.deadLine ? item.deadLine : item.date}
           />
-        </HStack>
+
+          <HStack justifyContent="space-between">
+            <Text color="white" fontSize="19">
+              {item.title}
+            </Text>
+
+            <Image
+              bg="white"
+              source={{
+                uri: 'https://picsum.photos/200',
+              }}
+              alt="Lorem Picsum"
+              height="50"
+              rounded="full"
+              width="50"
+            />
+          </HStack>
+        </VStack>
       </Box>
       <Pressable
         shadow={5}

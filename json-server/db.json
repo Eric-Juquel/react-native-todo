@@ -89,15 +89,6 @@
       "id": 12
     },
     {
-      "title": "Implement Status dnd",
-      "description": "Move completed prop to status as enum To Do - In Progress - Done",
-      "date": "2022-02-28T09:18:44.940Z",
-      "completed": false,
-      "image": "https://picsum.photos/200",
-      "deadLine": "2022-03-02T08:48:00.000Z",
-      "id": 13
-    },
-    {
       "title": "Progress Bar",
       "description": "Ad timeline to deadLine",
       "date": "2022-02-28T09:19:19.011Z",
@@ -123,6 +114,24 @@
       "image": "https://picsum.photos/200",
       "deadLine": "2022-02-28T10:46:29.117Z",
       "id": 16
+    },
+    {
+      "title": "Add Status Actions",
+      "description": "",
+      "date": "2022-02-28T15:08:21.685Z",
+      "completed": false,
+      "image": "https://picsum.photos/200",
+      "deadLine": "2022-03-02T14:18:00.000Z",
+      "id": 17
+    },
+    {
+      "title": "Test Date",
+      "description": "",
+      "date": "2022-02-28T17:48:56.548Z",
+      "completed": false,
+      "image": "https://picsum.photos/200",
+      "deadLine": "2022-03-07T17:44:00.000Z",
+      "id": 18
     }
   ]
 }

@@ -1,9 +1,9 @@
 import React, {useCallback, useState} from 'react';
 import {Task} from '../../redux/features/tasksSlice';
 import {SwipeListView} from 'react-native-swipe-list-view';
-import {Center} from 'native-base';
+import {Center, HStack, Text} from 'native-base';
 import TaskItem from './TaskItem';
-import TaskDelete from './TaskDelete';
+import TaskDeleteAction from './TaskDeleteAction';
 
 interface Props {
   tasks: Task[];
@@ -20,7 +20,12 @@ const NBSwipeList: React.FC<Props> = ({tasks}) => {
   );
 
   const renderHiddenItem = useCallback(
-    (data: any) => <TaskDelete task={data.item} rowOpen={rowOpen} />,
+    (data: any) => (
+      <HStack flex={1} justifyContent="space-between" py={3}>
+        <Text>Actions</Text>
+        <TaskDeleteAction task={data.item} rowOpen={rowOpen} />
+      </HStack>
+    ),
     [rowOpen],
   );
 
@@ -39,6 +44,7 @@ const NBSwipeList: React.FC<Props> = ({tasks}) => {
   return (
     <Center flex={1}>
       <SwipeListView
+        showsVerticalScrollIndicator={false}
         data={tasks}
         renderItem={renderItem}
         renderHiddenItem={renderHiddenItem}
