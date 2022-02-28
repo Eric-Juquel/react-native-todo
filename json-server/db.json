@@ -52,7 +52,7 @@
       "title": "Add image on Add task",
       "description": "Some New Description",
       "date": "2022-02-21T17:37:55.688Z",
-      "completed": false,
+      "completed": true,
       "image": "https://picsum.photos/200",
       "id": 8
     },
@@ -60,7 +60,7 @@
       "title": "Redux Toolkit",
       "description": "Some New Description",
       "date": "2022-02-21T17:50:49.974Z",
-      "completed": true,
+      "completed": false,
       "image": "https://picsum.photos/200",
       "id": 9
     },
@@ -87,6 +87,33 @@
       "completed": false,
       "image": "https://picsum.photos/200",
       "id": 12
+    },
+    {
+      "title": "Implement Status dnd",
+      "description": "Move completed prop to status as enum To Do - In Progress - Done",
+      "date": "2022-02-28T09:18:44.940Z",
+      "completed": false,
+      "image": "https://picsum.photos/200",
+      "deadLine": "2022-03-02T08:48:00.000Z",
+      "id": 13
+    },
+    {
+      "title": "Progress Bar",
+      "description": "Ad timeline to deadLine",
+      "date": "2022-02-28T09:19:19.011Z",
+      "completed": false,
+      "image": "https://picsum.photos/200",
+      "deadLine": "2022-03-02T08:48:00.000Z",
+      "id": 14
+    },
+    {
+      "title": "Remove All completed",
+      "description": "Button on header",
+      "date": "2022-02-28T09:19:56.392Z",
+      "completed": false,
+      "image": "https://picsum.photos/200",
+      "deadLine": "2022-03-02T08:48:00.000Z",
+      "id": 15
     }
   ]
 }

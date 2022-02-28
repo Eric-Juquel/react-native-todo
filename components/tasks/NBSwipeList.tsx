@@ -43,6 +43,7 @@ const NBSwipeList: React.FC<Props> = ({tasks}) => {
         renderItem={renderItem}
         renderHiddenItem={renderHiddenItem}
         keyExtractor={keyExtractor}
+        leftOpenValue={80}
         rightOpenValue={-80}
         previewRowKey={'0'}
         previewOpenValue={-40}

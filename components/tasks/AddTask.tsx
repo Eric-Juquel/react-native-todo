@@ -36,8 +36,6 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
     },
   });
 
-  console.log('errors', errors);
-
   const onSubmit = (data: FormData) => {
     console.log(data);
     const newTask = {
@@ -55,6 +53,7 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
   };
 
   function cancelAddTaskHandler() {
+    reset();
     setVisible(false);
   }
 
@@ -64,7 +63,7 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
         onPress={() => {
           Keyboard.dismiss();
         }}>
-        <Modal.Content maxWidth="400px" mt={-260}>
+        <Modal.Content w={350} maxWidth="400px" mt={-260}>
           <Modal.CloseButton />
           <Modal.Header>New Task</Modal.Header>
           <Modal.Body>
@@ -108,7 +107,7 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
               render={({field}) => (
                 <DateTimePicker
                   value={field.value}
-                  display="default"
+                  display="compact"
                   mode="date"
                   onChange={(e: Event, date?: Date | undefined) =>
                     field.onChange(date)
