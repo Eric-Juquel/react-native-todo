@@ -1,4 +1,4 @@
-import {tasksReducer} from './reducers/task-reducer';
+import tasksReducer from './features/tasksSlice';
 import filterReducer from './features/filterSlice';
 import {configureStore} from '@reduxjs/toolkit';
 

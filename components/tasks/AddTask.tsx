@@ -1,11 +1,12 @@
 import {TouchableWithoutFeedback, Keyboard} from 'react-native';
 import React from 'react';
-import {addTask, loadTasks} from '../../redux/actions/task-actions';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../redux/store';
+import {addTask} from '../../redux/services/taksServices';
+import {useDispatch} from 'react-redux';
+
 import {Modal, Button, Input, TextArea, Text} from 'native-base';
 import {useForm, Controller} from 'react-hook-form';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import {AppDispatch} from '../../redux/store';
 
 interface Props {
   visible: boolean;
@@ -19,9 +20,7 @@ interface FormData {
 }
 
 const AddTask: React.FC<Props> = ({visible, setVisible}) => {
-  const dispatch = useDispatch();
-
-  const {filter} = useSelector<RootState, any>(state => state.filter);
+  const dispatch = useDispatch<AppDispatch>();
 
   const {
     handleSubmit,
@@ -47,7 +46,6 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
       deadLine: data.deadLine.toISOString(),
     };
     dispatch(addTask(newTask));
-    dispatch(loadTasks(filter));
     reset();
     setVisible(false);
   };

@@ -13,7 +13,7 @@ import {
 } from 'native-base';
 
 const TaskDetailScreen = () => {
-  const {task} = useSelector<RootState, any>(state => state.tasksState);
+  const {task} = useSelector((state: RootState) => state.tasks);
 
   return (
     task && (

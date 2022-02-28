@@ -8,10 +8,11 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import {Task} from '../../../redux/reducers/task-reducer';
-import {deleteTask} from '../../../redux/actions/task-actions';
+import {Task} from '../../../redux/features/tasksSlice';
+import {deleteTask} from '../../../redux/services/taksServices';
 import {useDispatch} from 'react-redux';
 import {Alert} from 'react-native';
+import {AppDispatch} from '../../../redux/store';
 
 interface Props {
   task: Task;
@@ -19,10 +20,10 @@ interface Props {
 }
 
 const TaskDelete: React.FC<Props> = ({task, rowOpen}) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   function deleteHandler() {
-    dispatch(deleteTask(task));
+    dispatch(deleteTask(task.id));
   }
 
   function closeHandler() {

@@ -1,29 +1,25 @@
 import React, {useEffect} from 'react';
 
 import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../redux/store';
-import {loadTasks} from '../../redux/actions/task-actions';
+import {AppDispatch, RootState} from '../../redux/store';
+import {loadTasks} from '../../redux/services/taksServices';
 
 import Navigation from './Navigation';
 import NBSwipeList from './NBSwipeList';
 import {Box, Center, Heading} from 'native-base';
 
 const TaskList = () => {
-  const dispatch = useDispatch();
-  const {tasks, success} = useSelector<RootState, any>(
-    state => state.tasksState,
-  );
+  const dispatch = useDispatch<AppDispatch>();
+  const {tasks} = useSelector((state: RootState) => state.tasks);
 
   // console.log('taskList render');
 
   const {filter} = useSelector<RootState, any>(state => state.filter);
 
   useEffect(() => {
-    // console.log('useEffect load tasks');
     dispatch(loadTasks(filter));
-  }, [dispatch, filter, success]);
+  }, [dispatch, filter]);
 
-  // console.log('tasks', tasks, 'filter', filter);
   return (
     <Center flex={1}>
       <Box>
