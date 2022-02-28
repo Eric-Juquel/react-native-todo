@@ -1,9 +1,9 @@
 import React, {useCallback, useState} from 'react';
-import {Task} from '../../redux/reducers/task-reducer';
+import {Task} from '../../redux/features/tasksSlice';
 import {SwipeListView} from 'react-native-swipe-list-view';
 import {Center} from 'native-base';
-import TaskItem from './task-item/TaskItem';
-import TaskDelete from './task-item/TaskDelete';
+import TaskItem from './TaskItem';
+import TaskDelete from './TaskDelete';
 
 interface Props {
   tasks: Task[];

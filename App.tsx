@@ -23,8 +23,8 @@ import {
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-import TaskDetailScreen from './components/layout/TaskDetailScreen';
-import HomeScreen from './components/layout/HomeScreen';
+import TaskDetailScreen from './screens/TaskDetailScreen';
+import HomeScreen from './screens/HomeScreen';
 import {NativeBaseProvider} from 'native-base';
 
 const config = {

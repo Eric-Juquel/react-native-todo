@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import TaskList from '../tasks/TaskList';
-import AddTask from '../tasks/AddTask';
-import Header from './Header';
+import TaskList from '../components/layout/TaskList';
+import AddTask from '../components/tasks/AddTask';
+import Header from '../components/layout/Header';
 import {Box} from 'native-base';
 
 const HomeScreen = () => {

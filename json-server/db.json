@@ -60,7 +60,7 @@
       "title": "Redux Toolkit",
       "description": "Some New Description",
       "date": "2022-02-21T17:50:49.974Z",
-      "completed": false,
+      "completed": true,
       "image": "https://picsum.photos/200",
       "id": 9
     },

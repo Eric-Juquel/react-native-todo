@@ -8,11 +8,11 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import {Task} from '../../../redux/features/tasksSlice';
-import {deleteTask} from '../../../redux/services/taksServices';
+import {Task} from '../../redux/features/tasksSlice';
+import {deleteTask} from '../../redux/services/taksServices';
 import {useDispatch} from 'react-redux';
 import {Alert} from 'react-native';
-import {AppDispatch} from '../../../redux/store';
+import {AppDispatch} from '../../redux/store';
 
 interface Props {
   task: Task;

@@ -1,6 +1,6 @@
 import {Box, HStack, Image, Pressable, Text, VStack, ZStack} from 'native-base';
 import React from 'react';
-import {Task} from '../../../redux/reducers/task-reducer';
+import {Task} from '../../redux/features/tasksSlice';
 
 interface Props {
   item: Task;

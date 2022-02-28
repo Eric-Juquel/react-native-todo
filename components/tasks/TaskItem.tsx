@@ -1,13 +1,13 @@
 import {TouchableOpacity} from 'react-native';
 import React, {useState, memo} from 'react';
 import {useDispatch} from 'react-redux';
-import {getTaskDetails, updateTask} from '../../../redux/services/taksServices';
+import {getTaskDetails, updateTask} from '../../redux/services/taksServices';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {RootStackParamList} from '../../../App';
-import {Task} from '../../../redux/features/tasksSlice';
-import NBTaskItem from './NBTaskItem';
-import {AppDispatch} from '../../../redux/store';
+import {RootStackParamList} from '../../App';
+import {Task} from '../../redux/features/tasksSlice';
+import NBTaskItem from './TaskCard';
+import {AppDispatch} from '../../redux/store';
 
 type DetailscreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
