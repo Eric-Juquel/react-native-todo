@@ -1,19 +1,15 @@
-import {applyMiddleware, createStore, combineReducers} from 'redux';
-import thunk from 'redux-thunk';
-import {composeWithDevTools} from 'redux-devtools-extension';
 import {tasksReducer} from './reducers/task-reducer';
 import {setFilterReducer} from './reducers/filterReducer';
+import {configureStore} from '@reduxjs/toolkit';
 
-const rootReducer = combineReducers({
-  tasksState: tasksReducer,
-  filterState: setFilterReducer,
+export const store = configureStore({
+  reducer: {
+    filter: setFilterReducer,
+    tasks: tasksReducer,
+  },
 });
 
-export type RootState = ReturnType<typeof rootReducer>;
-
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunk)),
-);
-
-export default store;
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>;
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch;
