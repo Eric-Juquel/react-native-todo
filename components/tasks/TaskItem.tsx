@@ -1,4 +1,3 @@
-import {TouchableOpacity} from 'react-native';
 import React, {useState, memo} from 'react';
 import {useDispatch} from 'react-redux';
 import {getTaskDetails, updateTask} from '../../redux/services/taksServices';
@@ -6,8 +5,9 @@ import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../App';
 import {Task} from '../../redux/features/tasksSlice';
-import NBTaskItem from './TaskCard';
+import TaskCard from './TaskCard';
 import {AppDispatch} from '../../redux/store';
+import {Pressable} from 'native-base';
 
 type DetailscreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -39,13 +39,13 @@ const TaskItem: React.FC<Props> = ({task}) => {
   }
 
   return (
-    <TouchableOpacity onPress={() => showTaskDetails(task.id)}>
-      <NBTaskItem
+    <Pressable onPress={() => showTaskDetails(task.id)}>
+      <TaskCard
         item={task}
         completed={isCompleted}
         updateCompleted={updateCompletedHandler}
       />
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

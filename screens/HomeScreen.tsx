@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import TaskList from '../components/layout/TaskList';
+import TaskList from '../components/layout/TasksList';
 import AddTask from '../components/tasks/AddTask';
 import Header from '../components/layout/Header';
 import {Box} from 'native-base';

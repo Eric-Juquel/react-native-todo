@@ -5,7 +5,7 @@ import {AppDispatch, RootState} from '../../redux/store';
 import {loadTasks} from '../../redux/services/taksServices';
 
 import Navigation from './Navigation';
-import NBSwipeList from '../tasks/TasksSwipeList';
+import TasksSwipeList from '../tasks/TasksSwipeList';
 import {Box, Center, Heading} from 'native-base';
 
 const TaskList = () => {
@@ -34,7 +34,7 @@ const TaskList = () => {
             : 'Active Tasks'}
         </Heading>
       </Center>
-      <NBSwipeList tasks={tasks} />
+      <TasksSwipeList tasks={tasks} />
     </Center>
   );
 };
