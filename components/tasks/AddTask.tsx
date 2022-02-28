@@ -21,7 +21,7 @@ interface FormData {
 const AddTask: React.FC<Props> = ({visible, setVisible}) => {
   const dispatch = useDispatch();
 
-  const {filter} = useSelector<RootState, any>(state => state.filterState);
+  const {filter} = useSelector<RootState, any>(state => state.filter);
 
   const {
     handleSubmit,

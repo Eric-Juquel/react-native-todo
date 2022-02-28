@@ -2,13 +2,13 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {RootState} from '../../redux/store';
-import {setFilter} from '../../redux/actions/filter-actions';
+import {setFilter} from '../../redux/features/filterSlice';
 import {Button, HStack} from 'native-base';
 
 const Navigation = () => {
   const dispatch = useDispatch();
 
-  const {filter} = useSelector<RootState, any>(state => state.filterState);
+  const {filter} = useSelector<RootState, any>(state => state.filter);
   return (
     <HStack width={350} justifyContent={'space-between'} mt={2}>
       <Button

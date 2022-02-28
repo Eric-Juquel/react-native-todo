@@ -16,7 +16,7 @@ const TaskList = () => {
 
   // console.log('taskList render');
 
-  const {filter} = useSelector<RootState, any>(state => state.filterState);
+  const {filter} = useSelector<RootState, any>(state => state.filter);
 
   useEffect(() => {
     // console.log('useEffect load tasks');
