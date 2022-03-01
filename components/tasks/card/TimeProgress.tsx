@@ -21,8 +21,6 @@ const TimeProgress: React.FC<Props> = ({startDate, endDate}) => {
   const timeProgress =
     daysPassed === 0 ? 100 : Math.round((daysPassed * 100) / daysInterval);
 
-  console.log(timeProgress);
-
   return (
     <HStack justifyContent="space-between" alignItems="center">
       <Text fontSize="sm" color="white">

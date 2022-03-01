@@ -1,6 +1,7 @@
-import {Box, HStack, Image, Pressable, Text, VStack, ZStack} from 'native-base';
+import {Box, HStack, Image, Text, VStack, ZStack} from 'native-base';
 import React from 'react';
-import {Task} from '../../redux/features/tasksSlice';
+import {Task} from '../../../redux/features/tasksSlice';
+import TaskStatusBtn from './TaskStatusBtn';
 import TimeProgress from './TimeProgress';
 
 interface Props {
@@ -59,25 +60,7 @@ const NBTaskItem: React.FC<Props> = ({item, completed, updateCompleted}) => {
           </HStack>
         </VStack>
       </Box>
-      <Pressable
-        shadow={5}
-        mt={78}
-        ml={8}
-        rounded="xs"
-        bg={completed ? 'teal.400' : 'primary.400'}
-        _pressed={{bg: completed ? 'teal.700' : 'primary.700'}}
-        alignSelf="flex-start"
-        py="1"
-        px="3"
-        onPress={updateCompleted}>
-        <Text
-          textTransform="uppercase"
-          fontSize="sm"
-          fontWeight="bold"
-          color="white">
-          {completed ? 'Done' : 'To Do'}
-        </Text>
-      </Pressable>
+      <TaskStatusBtn status={completed} updateCompleted={updateCompleted} />
     </ZStack>
   );
 };

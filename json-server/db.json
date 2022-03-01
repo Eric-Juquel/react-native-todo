@@ -5,6 +5,7 @@
       "description": "Some New Description",
       "date": "2022-02-11T12:28:37.273Z",
       "completed": false,
+      "status": "To Do",
       "image": "https://picsum.photos/200",
       "id": 1
     },
@@ -13,6 +14,7 @@
       "description": "Some New Description",
       "date": "2022-02-15T13:02:14.700Z",
       "completed": true,
+      "status": "Done",
       "image": "https://picsum.photos/200",
       "id": 3
     },
@@ -21,6 +23,7 @@
       "description": "Some New Description",
       "date": "2022-02-15T13:02:30.453Z",
       "completed": true,
+      "status": "Done",
       "image": "https://picsum.photos/200",
       "id": 4
     },
@@ -29,6 +32,7 @@
       "description": "Some New Description",
       "date": "2022-02-21T13:12:27.153Z",
       "completed": true,
+      "status": "Done",
       "image": "https://picsum.photos/200",
       "id": 5
     },
@@ -37,6 +41,7 @@
       "description": "Some New Description",
       "date": "2022-02-21T17:37:14.136Z",
       "completed": false,
+      "status": "To Do",
       "image": "https://picsum.photos/200",
       "id": 6
     },
@@ -45,6 +50,7 @@
       "description": "Some New Description",
       "date": "2022-02-21T17:37:37.617Z",
       "completed": false,
+      "status": "To Do",
       "image": "https://picsum.photos/200",
       "id": 7
     },
@@ -53,6 +59,7 @@
       "description": "Some New Description",
       "date": "2022-02-21T17:37:55.688Z",
       "completed": true,
+      "status": "Done",
       "image": "https://picsum.photos/200",
       "id": 8
     },
@@ -61,6 +68,7 @@
       "description": "Some New Description",
       "date": "2022-02-21T17:50:49.974Z",
       "completed": true,
+      "status": "Done",
       "image": "https://picsum.photos/200",
       "id": 9
     },
@@ -69,6 +77,7 @@
       "description": "Some New Description",
       "date": "2022-02-21T17:53:10.816Z",
       "completed": true,
+      "status": "Done",
       "image": "https://picsum.photos/200",
       "id": 10
     },
@@ -77,6 +86,7 @@
       "description": "Some New Description",
       "date": "2022-02-21T17:54:11.275Z",
       "completed": true,
+      "status": "Done",
       "image": "https://picsum.photos/200",
       "id": 11
     },
@@ -84,7 +94,8 @@
       "title": "Add Dark Mode",
       "description": "Some New Description",
       "date": "2022-02-24T15:08:35.600Z",
-      "completed": false,
+      "completed": true,
+      "status": "Done",
       "image": "https://picsum.photos/200",
       "id": 12
     },
@@ -92,7 +103,8 @@
       "title": "Progress Bar",
       "description": "Ad timeline to deadLine",
       "date": "2022-02-28T09:19:19.011Z",
-      "completed": false,
+      "completed": true,
+      "status": "Done",
       "image": "https://picsum.photos/200",
       "deadLine": "2022-03-02T08:48:00.000Z",
       "id": 14
@@ -102,24 +114,17 @@
       "description": "Button on header",
       "date": "2022-02-28T09:19:56.392Z",
       "completed": false,
+      "status": "To Do",
       "image": "https://picsum.photos/200",
       "deadLine": "2022-03-02T08:48:00.000Z",
       "id": 15
-    },
-    {
-      "title": "Test",
-      "description": "",
-      "date": "2022-02-28T11:09:46.033Z",
-      "completed": false,
-      "image": "https://picsum.photos/200",
-      "deadLine": "2022-02-28T10:46:29.117Z",
-      "id": 16
     },
     {
       "title": "Add Status Actions",
       "description": "",
       "date": "2022-02-28T15:08:21.685Z",
       "completed": false,
+      "status": "To Do",
       "image": "https://picsum.photos/200",
       "deadLine": "2022-03-02T14:18:00.000Z",
       "id": 17
@@ -129,6 +134,7 @@
       "description": "",
       "date": "2022-02-28T17:48:56.548Z",
       "completed": false,
+      "status": "To Do",
       "image": "https://picsum.photos/200",
       "deadLine": "2022-03-07T17:44:00.000Z",
       "id": 18

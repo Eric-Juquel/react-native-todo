@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../App';
 import {Task} from '../../redux/features/tasksSlice';
-import TaskCard from './TaskCard';
+import TaskCard from './card/TaskCard';
 import {AppDispatch} from '../../redux/store';
 import {Pressable} from 'native-base';
 

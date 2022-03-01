@@ -4,6 +4,7 @@ import {SwipeListView} from 'react-native-swipe-list-view';
 import {Center, HStack, Text} from 'native-base';
 import TaskItem from './TaskItem';
 import TaskDeleteAction from './TaskDeleteAction';
+import TaskStatusAction from './TaskStatusAction';
 
 interface Props {
   tasks: Task[];
@@ -22,7 +23,7 @@ const NBSwipeList: React.FC<Props> = ({tasks}) => {
   const renderHiddenItem = useCallback(
     (data: any) => (
       <HStack flex={1} justifyContent="space-between" py={3}>
-        <Text>Actions</Text>
+        <TaskStatusAction task={data.item} rowOpen={rowOpen} />
         <TaskDeleteAction task={data.item} rowOpen={rowOpen} />
       </HStack>
     ),
@@ -49,7 +50,7 @@ const NBSwipeList: React.FC<Props> = ({tasks}) => {
         renderItem={renderItem}
         renderHiddenItem={renderHiddenItem}
         keyExtractor={keyExtractor}
-        leftOpenValue={80}
+        leftOpenValue={160}
         rightOpenValue={-80}
         previewRowKey={'0'}
         previewOpenValue={-40}
