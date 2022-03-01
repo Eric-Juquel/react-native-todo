@@ -10,16 +10,18 @@ interface Props {
 const TimeProgress: React.FC<Props> = ({startDate, endDate}) => {
   const date1 = dayjs(startDate);
   const date2 = dayjs(endDate);
-  const today = Date.now();
+  const today = dayjs(new Date().toISOString());
 
-  const daysInterval = date2.diff(date1, 'day');
+  const daysInterval = date2.diff(date1);
 
-  const daysToDeadLine = date2.diff(today, 'day');
+  const daysToDeadLine = date2.diff(today);
 
   const daysPassed = daysToDeadLine < 0 ? 0 : daysInterval - daysToDeadLine;
 
   const timeProgress =
-    daysPassed === 0 ? 0 : Math.round((daysPassed * 100) / daysInterval);
+    daysPassed === 0 ? 100 : Math.round((daysPassed * 100) / daysInterval);
+
+  console.log(timeProgress);
 
   return (
     <HStack justifyContent="space-between" alignItems="center">
