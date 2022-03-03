@@ -8,11 +8,7 @@ import {
   updateTask,
 } from '../services/taksServices';
 
-export enum Status {
-  toDo = 'To Do',
-  pending = 'In progress',
-  completed = 'Done',
-}
+export type Status = 'To Do' | 'In Progress' | 'Done';
 
 export interface Task {
   id: number;
@@ -20,7 +16,7 @@ export interface Task {
   description: string;
   date: string;
   completed: boolean;
-  status: string;
+  status: Status;
   image: string;
   deadLine: string;
 }

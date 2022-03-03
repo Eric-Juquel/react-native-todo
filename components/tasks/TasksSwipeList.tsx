@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import {Task} from '../../redux/features/tasksSlice';
 import {SwipeListView} from 'react-native-swipe-list-view';
-import {Center, HStack, Text} from 'native-base';
+import {Center, HStack} from 'native-base';
 import TaskItem from './TaskItem';
 import TaskDeleteAction from './TaskDeleteAction';
 import TaskStatusAction from './TaskStatusAction';

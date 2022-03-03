@@ -11,14 +11,13 @@ import {Status, Task} from '../../redux/features/tasksSlice';
 import {useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/Entypo';
 import {AppDispatch} from '../../redux/store';
-import {taskCancelled} from '@reduxjs/toolkit/dist/listenerMiddleware/exceptions';
 
 interface Props {
   task: Task;
   rowOpen: string | null;
 }
 
-const existingStatus: Task['status'] = ['To Do', 'In Progress', 'Done'];
+const existingStatus: Status[] = ['To Do', 'In Progress', 'Done'];
 
 const TaskStatusAction: React.FC<Props> = ({task, rowOpen}) => {
   const buttonStatus = existingStatus.filter(
