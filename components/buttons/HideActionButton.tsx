@@ -1,7 +1,7 @@
 import React from 'react';
 import {Status, Task} from '../../redux/features/tasksSlice';
 import {Center, PresenceTransition, Pressable, Text, VStack} from 'native-base';
-import {Icon} from 'react-native-vector-icons/Icon';
+import Icon from 'react-native-vector-icons/Entypo';
 import {GestureResponderEvent} from 'react-native';
 
 export type TypeButton = Status | 'Delete';
@@ -9,9 +9,11 @@ export type TypeButton = Status | 'Delete';
 interface Props {
   type: TypeButton;
   onPress: (event: GestureResponderEvent) => void;
-  rowOpen: string;
+  rowOpen: string | null;
   itemId: Task['id'];
   key: number;
+  iconName: string;
+  side: string;
 }
 
 const HideActionButton: React.FC<Props> = ({
@@ -20,6 +22,8 @@ const HideActionButton: React.FC<Props> = ({
   onPress,
   rowOpen,
   itemId,
+  iconName,
+  side,
 }) => {
   return (
     <PresenceTransition
@@ -45,9 +49,12 @@ const HideActionButton: React.FC<Props> = ({
             ? 'primary.400'
             : type === 'Done'
             ? 'teal.400'
-            : 'amber.400'
+            : type === 'In Progress'
+            ? 'amber.400'
+            : 'red.500'
         }
-        mr={2}>
+        ml={side === 'right' ? 2 : 0}
+        mr={side === 'left' ? 2 : 0}>
         <Pressable
           cursor="pointer"
           onPress={onPress}
@@ -55,7 +62,7 @@ const HideActionButton: React.FC<Props> = ({
             opacity: 0.5,
           }}>
           <VStack alignItems="center" space={2}>
-            <Icon name="flag" size={22} color="white" />
+            <Icon name={iconName} size={22} color="white" />
             <Text color="white" fontSize="xs" fontWeight="medium">
               {type}
             </Text>

@@ -6,16 +6,14 @@ import TimeProgress from './TimeProgress';
 
 interface Props {
   item: Task;
-  completed: boolean;
-  updateCompleted(): void;
 }
 
-const NBTaskItem: React.FC<Props> = ({item, completed, updateCompleted}) => {
+const NBTaskItem: React.FC<Props> = ({item}) => {
   return (
     <ZStack width={350} height={100} marginY={2}>
       <Box
         bg={
-          completed
+          item.status === 'Done'
             ? {
                 linearGradient: {
                   colors: ['teal.600', 'teal.300'],
@@ -23,9 +21,17 @@ const NBTaskItem: React.FC<Props> = ({item, completed, updateCompleted}) => {
                   end: [1, 0],
                 },
               }
-            : {
+            : item.status === 'To Do'
+            ? {
                 linearGradient: {
                   colors: ['primary.600', 'lightBlue.300'],
+                  start: [0, 0],
+                  end: [1, 0],
+                },
+              }
+            : {
+                linearGradient: {
+                  colors: ['amber.600', 'amber.300'],
                   start: [0, 0],
                   end: [1, 0],
                 },
@@ -60,7 +66,7 @@ const NBTaskItem: React.FC<Props> = ({item, completed, updateCompleted}) => {
           </HStack>
         </VStack>
       </Box>
-      <TaskStatusBtn status={completed} updateCompleted={updateCompleted} />
+      <TaskStatusBtn status={item.status} />
     </ZStack>
   );
 };

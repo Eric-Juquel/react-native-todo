@@ -1,6 +1,6 @@
-import React, {useState, memo} from 'react';
+import React, {memo} from 'react';
 import {useDispatch} from 'react-redux';
-import {getTaskDetails, updateTask} from '../../redux/services/taksServices';
+import {getTaskDetails} from '../../redux/services/taksServices';
 import {useNavigation} from '@react-navigation/native';
 import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../App';
@@ -25,14 +25,6 @@ const TaskItem: React.FC<Props> = ({task}) => {
 
   // console.log('tasItem render', task.id);
 
-  const [isCompleted, setIsCompleted] = useState(task.completed);
-
-  function updateCompletedHandler() {
-    const updatedTask = {...task, completed: !isCompleted};
-    dispatch(updateTask(updatedTask));
-    setIsCompleted(() => !isCompleted);
-  }
-
   function showTaskDetails(taskId: Task['id']) {
     dispatch(getTaskDetails(taskId));
     navigation.navigate('Details');
@@ -40,11 +32,7 @@ const TaskItem: React.FC<Props> = ({task}) => {
 
   return (
     <Pressable onPress={() => showTaskDetails(task.id)}>
-      <TaskCard
-        item={task}
-        completed={isCompleted}
-        updateCompleted={updateCompletedHandler}
-      />
+      <TaskCard item={task} />
     </Pressable>
   );
 };

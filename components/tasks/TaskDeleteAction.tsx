@@ -1,11 +1,10 @@
 import React, {memo} from 'react';
-import {Center, PresenceTransition, Pressable, Text, VStack} from 'native-base';
-import Icon from 'react-native-vector-icons/Entypo';
 import {Alert} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {Task} from '../../redux/features/tasksSlice';
 import {deleteTask} from '../../redux/services/taksServices';
 import {AppDispatch} from '../../redux/store';
+import HideActionButton from '../buttons/HideActionButton';
 
 interface Props {
   task: Task;
@@ -30,35 +29,15 @@ const TaskDelete: React.FC<Props> = ({task, rowOpen}) => {
     ]);
   }
   return (
-    <PresenceTransition
-      visible={rowOpen === task.id.toString()}
-      initial={{
-        opacity: 0,
-        scale: 0,
-      }}
-      animate={{
-        opacity: 1,
-        scale: 1,
-        transition: {
-          duration: 100,
-        },
-      }}>
-      <Center flex="1" rounded="xl" w="70" bg="red.500">
-        <Pressable
-          cursor="pointer"
-          onPress={confirmDeleteHandler}
-          _pressed={{
-            opacity: 0.5,
-          }}>
-          <VStack alignItems="center" space={2}>
-            <Icon name="trash" size={22} color="white" />
-            <Text color="white" fontSize="xs" fontWeight="medium">
-              Delete
-            </Text>
-          </VStack>
-        </Pressable>
-      </Center>
-    </PresenceTransition>
+    <HideActionButton
+      key={0}
+      type="Delete"
+      rowOpen={rowOpen}
+      itemId={task.id}
+      onPress={confirmDeleteHandler}
+      iconName="trash"
+      side="left"
+    />
   );
 };
 

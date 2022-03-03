@@ -133,7 +133,7 @@
       "title": "Test Date",
       "description": "",
       "date": "2022-02-28T17:48:56.548Z",
-      "completed": false,
+      "completed": true,
       "status": "Done",
       "image": "https://picsum.photos/200",
       "deadLine": "2022-03-07T17:44:00.000Z",

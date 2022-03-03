@@ -1,32 +1,42 @@
 import React from 'react';
 import {HStack, Pressable, Text} from 'native-base';
+import {Status} from '../../../redux/features/tasksSlice';
 
 interface Props {
-  status: boolean;
-  updateCompleted(): void;
+  status: Status;
 }
 
-const TaskStatusBtn: React.FC<Props> = ({status, updateCompleted}) => {
+const TaskStatusBtn: React.FC<Props> = ({status}) => {
   return (
     <HStack mt={78} h={7} w={'80%'}>
       <Pressable
         shadow={5}
         ml={6}
         rounded="xs"
-        bg={status === false ? 'primary.400' : 'teal.400'}
+        bg={
+          status === 'To Do'
+            ? 'primary.400'
+            : status === 'Done'
+            ? 'teal.400'
+            : 'amber.400'
+        }
         _pressed={{
-          bg: status === false ? 'primary.700' : 'teal.700',
+          bg:
+            status === 'To Do'
+              ? 'primary.700'
+              : status === 'Done'
+              ? 'teal.700'
+              : 'amber.400',
         }}
         alignSelf="flex-start"
         py="1"
-        px="3"
-        onPress={updateCompleted}>
+        px="3">
         <Text
           textTransform="uppercase"
           fontSize="sm"
           fontWeight="bold"
           color="white">
-          {status === false ? 'To Do' : 'Done'}
+          {status}
         </Text>
       </Pressable>
     </HStack>

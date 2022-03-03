@@ -24,7 +24,6 @@ const TaskStatusAction: React.FC<Props> = ({task, rowOpen}) => {
     (status: string) => task.status !== status,
   );
 
-  console.log('button', buttonStatus);
   const dispatch = useDispatch<AppDispatch>();
 
   const updateStatusHandler = () => {

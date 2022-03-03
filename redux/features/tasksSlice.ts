@@ -15,7 +15,6 @@ export interface Task {
   title: string;
   description: string;
   date: string;
-  completed: boolean;
   status: Status;
   image: string;
   deadLine: string;
@@ -40,7 +39,12 @@ const initialState: TasksState = {
 const tasksSlice = createSlice({
   name: 'tasks',
   initialState,
-  reducers: {},
+  reducers: {
+    resetState: state => {
+      state.success = false;
+      state.error = null;
+    },
+  },
   extraReducers: builder => {
     //Load Tasks
     builder.addCase(loadTasks.pending, state => {
@@ -115,6 +119,7 @@ const tasksSlice = createSlice({
       updateTask.fulfilled,
       (state, action: PayloadAction<Task>) => {
         state.loading = false;
+        state.success = true;
         state.task = action.payload;
       },
     );
