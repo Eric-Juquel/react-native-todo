@@ -36,7 +36,7 @@ const TaskDelete: React.FC<Props> = ({task, rowOpen}) => {
       itemId={task.id}
       onPress={confirmDeleteHandler}
       iconName="trash"
-      side="left"
+      side="right"
     />
   );
 };
