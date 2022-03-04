@@ -11,13 +11,13 @@ interface Props {
   onPress: (event: GestureResponderEvent) => void;
   rowOpen: string | null;
   itemId: Task['id'];
-  key: number;
+  index: number;
   iconName: string;
   side: string;
 }
 
 const HideActionButton: React.FC<Props> = ({
-  key,
+  index,
   type,
   onPress,
   rowOpen,
@@ -27,7 +27,6 @@ const HideActionButton: React.FC<Props> = ({
 }) => {
   return (
     <PresenceTransition
-      key={key}
       visible={rowOpen === itemId.toString()}
       initial={{
         opacity: 0,
@@ -37,7 +36,7 @@ const HideActionButton: React.FC<Props> = ({
         opacity: 1,
         scale: 1,
         transition: {
-          duration: key === 0 ? 100 : 200,
+          duration: index === 0 ? 100 : 200,
         },
       }}>
       <Center

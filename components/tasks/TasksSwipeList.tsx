@@ -22,7 +22,7 @@ const NBSwipeList: React.FC<Props> = ({tasks}) => {
 
   const renderHiddenItem = useCallback(
     (data: any) => (
-      <HStack flex={1} justifyContent="space-between" py={3}>
+      <HStack flex={1} justifyContent="space-between" py={4}>
         <TaskStatusAction task={data.item} rowOpen={rowOpen} />
         <TaskDeleteAction task={data.item} rowOpen={rowOpen} />
       </HStack>
