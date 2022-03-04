@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import {useDispatch} from 'react-redux';
 import {getTaskDetails} from '../../redux/services/taksServices';
 import {useNavigation} from '@react-navigation/native';
@@ -23,7 +23,7 @@ const TaskItem: React.FC<Props> = ({task}) => {
   const navigation = useNavigation<DetailscreenNavigationProp>();
   const dispatch = useDispatch<AppDispatch>();
 
-  // console.log('tasItem render', task.id);
+  console.log('tasItem render', task.title);
 
   function showTaskDetails(taskId: Task['id']) {
     dispatch(getTaskDetails(taskId));
@@ -37,4 +37,4 @@ const TaskItem: React.FC<Props> = ({task}) => {
   );
 };
 
-export default memo(TaskItem);
+export default TaskItem;

@@ -4,6 +4,7 @@ import {Status, Task} from '../../redux/features/tasksSlice';
 import {useDispatch} from 'react-redux';
 import {AppDispatch} from '../../redux/store';
 import HideActionButton from '../buttons/HideActionButton';
+import {updateTask} from '../../redux/services/taksServices';
 
 interface Props {
   task: Task;
@@ -19,8 +20,9 @@ const TaskStatusAction: React.FC<Props> = ({task, rowOpen}) => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const updateStatusHandler = (index: number) => {
-    console.log(index);
+  const updateStatusHandler = (status: Status) => {
+    const updatedTask = {...task, status};
+    dispatch(updateTask(updatedTask));
   };
 
   return (
@@ -29,7 +31,7 @@ const TaskStatusAction: React.FC<Props> = ({task, rowOpen}) => {
         <HideActionButton
           key={index}
           type={el}
-          onPress={() => updateStatusHandler(index)}
+          onPress={() => updateStatusHandler(el)}
           rowOpen={rowOpen}
           itemId={task.id}
           iconName={'flag'}

@@ -11,6 +11,8 @@ export const loadTasks = createAsyncThunk(
       link = link.concat(`?completed=${filter}`);
     }
 
+    console.log('loadTasks');
+
     const response = await fetch(link);
     const tasks: Task[] = await response.json();
     return tasks.reverse();

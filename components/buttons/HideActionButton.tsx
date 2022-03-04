@@ -11,7 +11,7 @@ interface Props {
   onPress: (event: GestureResponderEvent) => void;
   rowOpen: string | null;
   itemId: Task['id'];
-  index: number;
+  index?: number;
   iconName: string;
   side: string;
 }

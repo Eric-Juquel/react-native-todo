@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import {Task} from '../../redux/features/tasksSlice';
 import {SwipeListView} from 'react-native-swipe-list-view';
-import {Center, HStack} from 'native-base';
+import {Center, HStack, Pressable} from 'native-base';
 import TaskItem from './TaskItem';
 import TaskDeleteAction from './TaskDeleteAction';
 import TaskStatusAction from './TaskStatusAction';
@@ -21,10 +21,10 @@ const NBSwipeList: React.FC<Props> = ({tasks}) => {
   );
 
   const renderHiddenItem = useCallback(
-    (data: any) => (
+    (rowData: any, rowMap: any) => (
       <HStack flex={1} justifyContent="space-between" py={4}>
-        <TaskStatusAction task={data.item} rowOpen={rowOpen} />
-        <TaskDeleteAction task={data.item} rowOpen={rowOpen} />
+        <TaskStatusAction task={rowData.item} rowOpen={rowOpen} />
+        <TaskDeleteAction task={rowData.item} rowOpen={rowOpen} />
       </HStack>
     ),
     [rowOpen],
@@ -32,15 +32,15 @@ const NBSwipeList: React.FC<Props> = ({tasks}) => {
 
   const keyExtractor = useCallback((item: Task) => item.id.toString(), []);
 
-  const onRowOpen = (rowKey: string) => {
-    console.log('This row opened', rowKey);
-    setRowOpen(rowKey);
-  };
+  // const onRowOpen = (rowKey: string) => {
+  //   console.log('This row opened', rowKey);
+  //   setRowOpen(rowKey);
+  // };
 
-  const onRowClose = (rowKey: string) => {
-    console.log('This row closed', rowKey);
-    setRowOpen(null);
-  };
+  // const onRowClose = (rowKey: string) => {
+  //   console.log('This row closed', rowKey);
+  //   setRowOpen(null);
+  // };
 
   return (
     <Center flex={1}>
@@ -55,8 +55,8 @@ const NBSwipeList: React.FC<Props> = ({tasks}) => {
         previewRowKey={'0'}
         previewOpenValue={-40}
         previewOpenDelay={3000}
-        onRowOpen={onRowOpen}
-        onRowClose={onRowClose}
+        // onRowOpen={onRowOpen}
+        // onRowClose={onRowClose}
       />
     </Center>
   );

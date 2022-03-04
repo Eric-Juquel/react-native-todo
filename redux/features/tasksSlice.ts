@@ -130,4 +130,6 @@ const tasksSlice = createSlice({
   },
 });
 
+export const {resetState} = tasksSlice.actions;
+
 export default tasksSlice.reducer;
