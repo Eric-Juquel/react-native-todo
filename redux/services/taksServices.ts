@@ -2,22 +2,15 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {Task} from '../features/tasksSlice';
 
 // load Tasks
-export const loadTasks = createAsyncThunk(
-  'tasks/load',
-  async (filter: boolean | null) => {
-    let link = 'http://localhost:3001/tasks';
+export const loadTasks = createAsyncThunk('tasks/load', async () => {
+  let link = 'http://localhost:3001/tasks';
 
-    if (filter !== null) {
-      link = link.concat(`?completed=${filter}`);
-    }
+  console.log('loadTasks');
 
-    console.log('loadTasks');
-
-    const response = await fetch(link);
-    const tasks: Task[] = await response.json();
-    return tasks.reverse();
-  },
-);
+  const response = await fetch(link);
+  const tasks: Task[] = await response.json();
+  return tasks.reverse();
+});
 
 // Add Task
 export const addTask = createAsyncThunk(

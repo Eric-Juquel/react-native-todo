@@ -5,44 +5,15 @@
       "description": "Some New Description",
       "date": "2022-02-11T12:28:37.273Z",
       "completed": false,
-      "status": "To Do",
-      "image": "https://picsum.photos/200",
+      "status": "In Progress",
       "id": 1
-    },
-    {
-      "title": "Another Task",
-      "description": "Some New Description",
-      "date": "2022-02-15T13:02:14.700Z",
-      "completed": true,
-      "status": "Done",
-      "image": "https://picsum.photos/200",
-      "id": 3
-    },
-    {
-      "title": "More Task",
-      "description": "Some New Description",
-      "date": "2022-02-15T13:02:30.453Z",
-      "completed": true,
-      "status": "Done",
-      "image": "https://picsum.photos/200",
-      "id": 4
-    },
-    {
-      "title": "Work with react native base",
-      "description": "Some New Description",
-      "date": "2022-02-21T13:12:27.153Z",
-      "completed": true,
-      "status": "Done",
-      "image": "https://picsum.photos/200",
-      "id": 5
     },
     {
       "title": "Trop de Rerender",
       "description": "Some New Description",
       "date": "2022-02-21T17:37:14.136Z",
       "completed": false,
-      "status": "To Do",
-      "image": "https://picsum.photos/200",
+      "status": "In Progress",
       "id": 6
     },
     {
@@ -51,91 +22,31 @@
       "date": "2022-02-21T17:37:37.617Z",
       "completed": false,
       "status": "To Do",
-      "image": "https://picsum.photos/200",
       "id": 7
-    },
-    {
-      "title": "Add image on Add task",
-      "description": "Some New Description",
-      "date": "2022-02-21T17:37:55.688Z",
-      "completed": true,
-      "status": "Done",
-      "image": "https://picsum.photos/200",
-      "id": 8
-    },
-    {
-      "title": "Redux Toolkit",
-      "description": "Some New Description",
-      "date": "2022-02-21T17:50:49.974Z",
-      "completed": true,
-      "status": "Done",
-      "image": "https://picsum.photos/200",
-      "id": 9
-    },
-    {
-      "title": "Refact Header and Navigation",
-      "description": "Some New Description",
-      "date": "2022-02-21T17:53:10.816Z",
-      "completed": true,
-      "status": "Done",
-      "image": "https://picsum.photos/200",
-      "id": 10
-    },
-    {
-      "title": "Add gradient and dark mode",
-      "description": "Some New Description",
-      "date": "2022-02-21T17:54:11.275Z",
-      "completed": true,
-      "status": "Done",
-      "image": "https://picsum.photos/200",
-      "id": 11
     },
     {
       "title": "Add Dark Mode",
       "description": "Some New Description",
       "date": "2022-02-24T15:08:35.600Z",
-      "completed": true,
-      "status": "Done",
-      "image": "https://picsum.photos/200",
+      "completed": false,
+      "status": "To Do",
       "id": 12
-    },
-    {
-      "title": "Progress Bar",
-      "description": "Ad timeline to deadLine",
-      "date": "2022-02-28T09:19:19.011Z",
-      "completed": true,
-      "status": "Done",
-      "image": "https://picsum.photos/200",
-      "deadLine": "2022-03-02T08:48:00.000Z",
-      "id": 14
     },
     {
       "title": "Remove All completed",
       "description": "Button on header",
       "date": "2022-02-28T09:19:56.392Z",
-      "completed": false,
-      "status": "To Do",
-      "image": "https://picsum.photos/200",
+      "completed": true,
+      "status": "Done",
       "deadLine": "2022-03-02T08:48:00.000Z",
       "id": 15
-    },
-    {
-      "title": "Add Status Actions",
-      "description": "",
-      "date": "2022-02-28T15:08:21.685Z",
-      "completed": false,
-      "status": "To Do",
-      "image": "https://picsum.photos/200",
-      "deadLine": "2022-03-02T14:18:00.000Z",
-      "id": 17
     },
     {
       "title": "Test Date",
       "description": "",
       "date": "2022-02-28T17:48:56.548Z",
-      "completed": true,
-      "status": "Done",
-      "image": "https://picsum.photos/200",
+      "completed": false,
+      "status": "In Progress",
       "deadLine": "2022-03-07T17:44:00.000Z",
       "id": 18
     },
@@ -144,10 +55,18 @@
       "description": "",
       "date": "2022-03-04T10:46:45.508Z",
       "completed": false,
-      "status": "In Progress",
-      "image": "https://picsum.photos/200",
+      "status": "To Do",
       "deadLine": "2022-03-09T10:45:00.000Z",
       "id": 19
+    },
+    {
+      "title": "Add Priority",
+      "description": "Add prop and flag \nList [High,Medium, Low]",
+      "date": "2022-03-05T13:38:50.724Z",
+      "status": "To Do",
+      "deadLine": "2022-03-07T13:29:00.000Z",
+      "id": 20,
+      "completed": false
     }
   ]
 }

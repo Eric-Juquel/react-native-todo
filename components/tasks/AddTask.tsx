@@ -42,7 +42,7 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
       description: data.description,
       date: new Date().toISOString(),
       status: 'To Do',
-      image: 'https://picsum.photos/200',
+      completed: false,
       deadLine: data.deadLine.toISOString(),
     };
     dispatch(addTask(newTask));

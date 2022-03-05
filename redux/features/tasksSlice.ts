@@ -16,12 +16,14 @@ export interface Task {
   description: string;
   date: string;
   status: Status;
-  image: string;
+  completed: boolean | null;
   deadLine: string;
 }
 
 export interface TasksState {
   tasks: Task[];
+  completedTasks: Task[];
+  activeTasks: Task[];
   task: Task | null;
   loading: boolean;
   success: boolean;
@@ -30,6 +32,8 @@ export interface TasksState {
 
 const initialState: TasksState = {
   tasks: [],
+  completedTasks: [],
+  activeTasks: [],
   task: null,
   loading: false,
   success: false,
@@ -55,6 +59,12 @@ const tasksSlice = createSlice({
       (state, action: PayloadAction<Task[]>) => {
         state.loading = false;
         state.tasks = action.payload;
+        state.completedTasks = action.payload.filter(
+          task => task.completed === true,
+        );
+        state.activeTasks = action.payload.filter(
+          task => task.completed !== true,
+        );
       },
     );
     builder.addCase(loadTasks.rejected, state => {
@@ -71,6 +81,7 @@ const tasksSlice = createSlice({
       (state, action: PayloadAction<WritableDraft<Task>>) => {
         state.loading = false;
         state.tasks = [action.payload, ...state.tasks];
+        state.activeTasks = [action.payload, ...state.activeTasks];
       },
     );
     builder.addCase(addTask.rejected, state => {
@@ -88,6 +99,9 @@ const tasksSlice = createSlice({
         state.loading = false;
         state.success = true;
         state.tasks = state.tasks.filter(task => task.id !== action.payload);
+        state.completedTasks = state.completedTasks.filter(
+          task => task.id !== action.payload,
+        );
       },
     );
     builder.addCase(deleteTask.rejected, state => {

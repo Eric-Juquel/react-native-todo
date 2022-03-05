@@ -1,5 +1,5 @@
 import React from 'react';
-import {HStack, Pressable, Text} from 'native-base';
+import {Center, HStack, Text} from 'native-base';
 import {Status} from '../../../redux/features/tasksSlice';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 const TaskStatusBtn: React.FC<Props> = ({status}) => {
   return (
     <HStack mt={78} h={7} w={'80%'}>
-      <Pressable
+      <Center
         shadow={5}
         ml={6}
         rounded="xs"
@@ -38,7 +38,7 @@ const TaskStatusBtn: React.FC<Props> = ({status}) => {
           color="white">
           {status}
         </Text>
-      </Pressable>
+      </Center>
     </HStack>
   );
 };

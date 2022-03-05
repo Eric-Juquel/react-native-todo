@@ -1,6 +1,6 @@
 import React from 'react';
-import {Status, Task} from '../../redux/features/tasksSlice';
-import {Center, PresenceTransition, Pressable, Text, VStack} from 'native-base';
+import {Status} from '../../redux/features/tasksSlice';
+import {Box, Center, Pressable, Text, VStack} from 'native-base';
 import Icon from 'react-native-vector-icons/Entypo';
 import {GestureResponderEvent} from 'react-native';
 
@@ -9,36 +9,20 @@ export type TypeButton = Status | 'Delete';
 interface Props {
   type: TypeButton;
   onPress: (event: GestureResponderEvent) => void;
-  rowOpen: string | null;
-  itemId: Task['id'];
   index?: number;
   iconName: string;
   side: string;
 }
 
 const HideActionButton: React.FC<Props> = ({
-  index,
   type,
   onPress,
-  rowOpen,
-  itemId,
+
   iconName,
   side,
 }) => {
   return (
-    <PresenceTransition
-      visible={rowOpen === itemId.toString()}
-      initial={{
-        opacity: 0,
-        scale: 0,
-      }}
-      animate={{
-        opacity: 1,
-        scale: 1,
-        transition: {
-          duration: index === 0 ? 100 : 200,
-        },
-      }}>
+    <Box>
       <Center
         flex="1"
         rounded="xl"
@@ -68,7 +52,7 @@ const HideActionButton: React.FC<Props> = ({
           </VStack>
         </Pressable>
       </Center>
-    </PresenceTransition>
+    </Box>
   );
 };
 

@@ -9,17 +9,19 @@ import {Box, Center, Heading} from 'native-base';
 
 const TaskList = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const {tasks, success} = useSelector((state: RootState) => state.tasks);
+  const {tasks, completedTasks, activeTasks, success} = useSelector(
+    (state: RootState) => state.tasks,
+  );
 
   console.log('taskList render');
 
   const {filter} = useSelector<RootState, any>(state => state.filter);
 
   useEffect(() => {
-    dispatch(loadTasks(filter));
-  }, [dispatch, filter]);
+    dispatch(loadTasks());
+  }, [dispatch, success]);
 
-  console.log(tasks, filter, success);
+  console.log(tasks, success);
 
   return (
     <Center flex={1}>
@@ -35,7 +37,15 @@ const TaskList = () => {
             : 'Active Tasks'}
         </Heading>
       </Center>
-      <TasksSwipeList tasks={tasks} />
+      <TasksSwipeList
+        tasks={
+          filter === null
+            ? tasks
+            : filter === true
+            ? completedTasks
+            : activeTasks
+        }
+      />
     </Center>
   );
 };

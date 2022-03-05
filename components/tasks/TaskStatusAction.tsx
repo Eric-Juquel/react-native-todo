@@ -1,6 +1,6 @@
 import React from 'react';
 import {HStack} from 'native-base';
-import {Status, Task} from '../../redux/features/tasksSlice';
+import {resetState, Status, Task} from '../../redux/features/tasksSlice';
 import {useDispatch} from 'react-redux';
 import {AppDispatch} from '../../redux/store';
 import HideActionButton from '../buttons/HideActionButton';
@@ -8,12 +8,12 @@ import {updateTask} from '../../redux/services/taksServices';
 
 interface Props {
   task: Task;
-  rowOpen: string | null;
+  rowMap: any;
 }
 
 const existingStatus: Status[] = ['To Do', 'In Progress', 'Done'];
 
-const TaskStatusAction: React.FC<Props> = ({task, rowOpen}) => {
+const TaskStatusAction: React.FC<Props> = ({task, rowMap}) => {
   const buttonStatus = existingStatus.filter(
     (status: string) => task.status !== status,
   );
@@ -21,8 +21,18 @@ const TaskStatusAction: React.FC<Props> = ({task, rowOpen}) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const updateStatusHandler = (status: Status) => {
-    const updatedTask = {...task, status};
+    let completed: boolean;
+    if (status === 'Done') {
+      completed = true;
+    } else {
+      completed = false;
+    }
+
+    console.log('status', status, 'completed', completed);
+    const updatedTask = {...task, status, completed};
     dispatch(updateTask(updatedTask));
+    rowMap[task.id.toString()].closeRow();
+    dispatch(resetState());
   };
 
   return (
@@ -32,11 +42,8 @@ const TaskStatusAction: React.FC<Props> = ({task, rowOpen}) => {
           key={index}
           type={el}
           onPress={() => updateStatusHandler(el)}
-          rowOpen={rowOpen}
-          itemId={task.id}
           iconName={'flag'}
           side={'left'}
-          index={index}
         />
       ))}
     </HStack>

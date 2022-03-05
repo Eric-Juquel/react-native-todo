@@ -1,6 +1,7 @@
-import {Box, HStack, Image, Text, VStack, ZStack} from 'native-base';
+import {Box, HStack, Text, VStack, ZStack} from 'native-base';
 import React from 'react';
 import {Task} from '../../../redux/features/tasksSlice';
+import Flag from './Flag';
 import TaskStatusBtn from './TaskStatusBtn';
 import TimeProgress from './TimeProgress';
 
@@ -53,16 +54,7 @@ const NBTaskItem: React.FC<Props> = ({item}) => {
               {item.title}
             </Text>
 
-            <Image
-              bg="white"
-              source={{
-                uri: 'https://picsum.photos/200',
-              }}
-              alt="Lorem Picsum"
-              height="50"
-              rounded="full"
-              width="50"
-            />
+            <Flag />
           </HStack>
         </VStack>
       </Box>

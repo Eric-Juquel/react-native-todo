@@ -8,10 +8,9 @@ import HideActionButton from '../buttons/HideActionButton';
 
 interface Props {
   task: Task;
-  rowOpen: string | null;
 }
 
-const TaskDelete: React.FC<Props> = ({task, rowOpen}) => {
+const TaskDelete: React.FC<Props> = ({task}) => {
   const dispatch = useDispatch<AppDispatch>();
 
   function deleteHandler() {
@@ -32,8 +31,6 @@ const TaskDelete: React.FC<Props> = ({task, rowOpen}) => {
     <HideActionButton
       key={0}
       type="Delete"
-      rowOpen={rowOpen}
-      itemId={task.id}
       onPress={confirmDeleteHandler}
       iconName="trash"
       side="right"
