@@ -21,7 +21,7 @@ const TaskList = () => {
     dispatch(loadTasks());
   }, [dispatch, success]);
 
-  console.log(tasks, success);
+  console.log(success);
 
   return (
     <Center flex={1}>

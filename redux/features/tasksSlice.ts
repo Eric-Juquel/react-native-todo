@@ -9,6 +9,7 @@ import {
 } from '../services/taksServices';
 
 export type Status = 'To Do' | 'In Progress' | 'Done';
+export type Priority = 'High' | 'Medium' | 'Low';
 
 export interface Task {
   id: number;
@@ -17,6 +18,7 @@ export interface Task {
   date: string;
   status: Status;
   completed: boolean | null;
+  priority: Priority;
   deadLine: string;
 }
 

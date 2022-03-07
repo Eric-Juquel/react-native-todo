@@ -43,6 +43,7 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
       date: new Date().toISOString(),
       status: 'To Do',
       completed: false,
+      priority: 'Low',
       deadLine: data.deadLine.toISOString(),
     };
     dispatch(addTask(newTask));

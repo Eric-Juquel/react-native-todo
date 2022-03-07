@@ -49,16 +49,17 @@ const NBTaskItem: React.FC<Props> = ({item}) => {
             endDate={item.deadLine ? item.deadLine : item.date}
           />
 
-          <HStack justifyContent="space-between" h={'60%'}>
+          <HStack h="60%">
             <Text color="white" fontSize="19">
               {item.title}
             </Text>
-
-            <Flag />
           </HStack>
         </VStack>
       </Box>
-      <TaskStatusBtn status={item.status} />
+      <HStack justifyContent="space-between">
+        <TaskStatusBtn status={item.status} />
+        {!item.completed && <Flag task={item} />}
+      </HStack>
     </ZStack>
   );
 };

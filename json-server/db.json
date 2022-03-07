@@ -5,6 +5,7 @@
       "description": "Some New Description",
       "date": "2022-02-11T12:28:37.273Z",
       "completed": false,
+      "priority": "High",
       "status": "In Progress",
       "id": 1
     },
@@ -13,6 +14,7 @@
       "description": "Some New Description",
       "date": "2022-02-21T17:37:14.136Z",
       "completed": false,
+      "priority": "High",
       "status": "In Progress",
       "id": 6
     },
@@ -21,6 +23,7 @@
       "description": "Some New Description",
       "date": "2022-02-21T17:37:37.617Z",
       "completed": false,
+      "priority": "High",
       "status": "To Do",
       "id": 7
     },
@@ -29,23 +32,16 @@
       "description": "Some New Description",
       "date": "2022-02-24T15:08:35.600Z",
       "completed": false,
+      "priority": "Low",
       "status": "To Do",
       "id": 12
-    },
-    {
-      "title": "Remove All completed",
-      "description": "Button on header",
-      "date": "2022-02-28T09:19:56.392Z",
-      "completed": true,
-      "status": "Done",
-      "deadLine": "2022-03-02T08:48:00.000Z",
-      "id": 15
     },
     {
       "title": "Test Date",
       "description": "",
       "date": "2022-02-28T17:48:56.548Z",
       "completed": false,
+      "priority": "Low",
       "status": "In Progress",
       "deadLine": "2022-03-07T17:44:00.000Z",
       "id": 18
@@ -55,18 +51,40 @@
       "description": "",
       "date": "2022-03-04T10:46:45.508Z",
       "completed": false,
+      "priority": "High",
       "status": "To Do",
       "deadLine": "2022-03-09T10:45:00.000Z",
       "id": 19
     },
     {
-      "title": "Add Priority",
-      "description": "Add prop and flag \nList [High,Medium, Low]",
-      "date": "2022-03-05T13:38:50.724Z",
+      "title": "Define color theme",
+      "description": "",
+      "date": "2022-03-05T15:55:47.217Z",
       "status": "To Do",
-      "deadLine": "2022-03-07T13:29:00.000Z",
-      "id": 20,
-      "completed": false
+      "completed": false,
+      "priority": "Medium",
+      "deadLine": "2022-03-05T15:50:47.908Z",
+      "id": 21
+    },
+    {
+      "title": "Test",
+      "description": "",
+      "date": "2022-03-07T17:03:32.639Z",
+      "status": "Done",
+      "completed": true,
+      "priority": "Low",
+      "deadLine": "2022-03-07T17:02:35.447Z",
+      "id": 22
+    },
+    {
+      "title": "Test",
+      "description": "Some test",
+      "date": "2022-03-07T17:06:57.695Z",
+      "status": "To Do",
+      "completed": false,
+      "priority": "High",
+      "deadLine": "2022-03-09T17:02:00.000Z",
+      "id": 23
     }
   ]
 }
