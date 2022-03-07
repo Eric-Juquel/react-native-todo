@@ -3,10 +3,11 @@ import React from 'react';
 import {addTask} from '../../redux/services/taksServices';
 import {useDispatch} from 'react-redux';
 
-import {Modal, Button, Input, TextArea, Text} from 'native-base';
+import {Modal, Button, Input, TextArea, Text, Radio} from 'native-base';
 import {useForm, Controller} from 'react-hook-form';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {AppDispatch} from '../../redux/store';
+import {Priority} from '../../redux/features/tasksSlice';
 
 interface Props {
   visible: boolean;
@@ -17,6 +18,7 @@ interface FormData {
   title: string;
   description: string;
   deadLine: Date;
+  priority: Priority;
 }
 
 const AddTask: React.FC<Props> = ({visible, setVisible}) => {
@@ -32,18 +34,19 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
       title: '',
       description: '',
       deadLine: new Date(Date.now()),
+      priority: 'Low',
     },
   });
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    console.log('data', data);
     const newTask = {
       title: data.title,
       description: data.description,
       date: new Date().toISOString(),
       status: 'To Do',
       completed: false,
-      priority: 'Low',
+      priority: data.priority,
       deadLine: data.deadLine.toISOString(),
     };
     dispatch(addTask(newTask));
@@ -114,6 +117,27 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
                 />
               )}
               name="deadLine"
+            />
+            <Text>Priority: </Text>
+            <Controller
+              control={control}
+              render={({field: {onChange}}) => (
+                <Radio.Group
+                  name="priority"
+                  flexDirection="row"
+                  onChange={onChange}>
+                  <Radio value="Low" colorScheme="teal">
+                    <Text mx={2}>Low</Text>
+                  </Radio>
+                  <Radio value="Medium" colorScheme="amber">
+                    <Text mx={2}>Medium</Text>
+                  </Radio>
+                  <Radio value="High" colorScheme="red">
+                    <Text mx={2}>High</Text>
+                  </Radio>
+                </Radio.Group>
+              )}
+              name="priority"
             />
           </Modal.Body>
           <Modal.Footer>

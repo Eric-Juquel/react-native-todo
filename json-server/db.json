@@ -80,11 +80,41 @@
       "title": "Test",
       "description": "Some test",
       "date": "2022-03-07T17:06:57.695Z",
+      "status": "In Progress",
+      "completed": false,
+      "priority": "Medium",
+      "deadLine": "2022-03-09T17:02:00.000Z",
+      "id": 23
+    },
+    {
+      "title": "Test priority",
+      "description": "",
+      "date": "2022-03-07T17:44:32.004Z",
       "status": "To Do",
       "completed": false,
       "priority": "High",
-      "deadLine": "2022-03-09T17:02:00.000Z",
-      "id": 23
+      "deadLine": "2022-03-07T17:43:47.872Z",
+      "id": 24
+    },
+    {
+      "title": "Test",
+      "description": "",
+      "date": "2022-03-07T17:44:59.408Z",
+      "status": "To Do",
+      "completed": false,
+      "priority": "Low",
+      "deadLine": "2022-03-07T17:43:47.872Z",
+      "id": 25
+    },
+    {
+      "title": "Test medium",
+      "description": "",
+      "date": "2022-03-07T17:47:07.636Z",
+      "status": "Done",
+      "completed": true,
+      "priority": "Medium",
+      "deadLine": "2022-03-10T17:43:00.000Z",
+      "id": 26
     }
   ]
 }
