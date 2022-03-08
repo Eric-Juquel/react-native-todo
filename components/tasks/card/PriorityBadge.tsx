@@ -16,25 +16,33 @@ interface Props {
   task: Task;
 }
 
+interface IconButton {
+  name: string;
+  color: string;
+}
+
+const iconButtons: IconButton[] = [
+  {
+    name: 'Low',
+    color: 'teal',
+  },
+  {
+    name: 'Medium',
+    color: 'amber',
+  },
+  {
+    name: 'High',
+    color: 'red',
+  },
+];
+
 const Flag: React.FC<Props> = ({task}) => {
   const dispatch = useDispatch();
 
   const {isOpen, onToggle} = useDisclose();
 
-  function onLow() {
-    const updatedTask = {...task, priority: 'Low'};
-    dispatch(updateTask(updatedTask));
-    dispatch(resetState());
-    onToggle();
-  }
-  function onMedium() {
-    const updatedTask = {...task, priority: 'Medium'};
-    dispatch(updateTask(updatedTask));
-    dispatch(resetState());
-    onToggle();
-  }
-  function onHigh() {
-    const updatedTask = {...task, priority: 'High'};
+  function onUpdatePriority(name: IconButton['name']) {
+    const updatedTask = {...task, priority: name};
     dispatch(updateTask(updatedTask));
     dispatch(resetState());
     onToggle();
@@ -80,63 +88,19 @@ const Flag: React.FC<Props> = ({task}) => {
               },
             },
           }}>
-          <IconButton
-            shadow={5}
-            mt="2"
-            variant="solid"
-            bg="teal.200"
-            colorScheme="teal"
-            borderRadius="full"
-            onPress={onLow}
-            icon={
-              <Icon
-                size={6}
-                name="flag"
-                color="white"
-                // _dark={{
-                //   color: 'white',
-                // }}
-              />
-            }
-          />
-          <IconButton
-            shadow={5}
-            mt="2"
-            variant="solid"
-            bg="amber.200"
-            colorScheme="amber"
-            borderRadius="full"
-            onPress={onMedium}
-            icon={
-              <Icon
-                // _dark={{
-                //   color: 'white',
-                // }}
-                size={6}
-                name="flag"
-                color="white"
-              />
-            }
-          />
-          <IconButton
-            shadow={5}
-            mt="2"
-            variant="solid"
-            bg="red.200"
-            colorScheme="red"
-            borderRadius="full"
-            onPress={onHigh}
-            icon={
-              <Icon
-                // _dark={{
-                //   color: 'white',
-                // }}
-                size={6}
-                name="flag"
-                color="white"
-              />
-            }
-          />
+          {iconButtons.map((button, index) => (
+            <IconButton
+              key={`${button.name}_${index}`}
+              shadow={5}
+              mt="2"
+              variant="solid"
+              bg={`${button.color}.200`}
+              colorScheme={button.color}
+              borderRadius="full"
+              onPress={() => onUpdatePriority(button.name)}
+              icon={<Icon size={6} name="flag" color="white" />}
+            />
+          ))}
         </Stagger>
       </HStack>
       <Pressable onPress={onToggle}>

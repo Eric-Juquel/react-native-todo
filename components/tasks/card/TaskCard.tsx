@@ -1,7 +1,7 @@
 import {Box, HStack, Text, VStack, ZStack} from 'native-base';
 import React from 'react';
 import {Task} from '../../../redux/features/tasksSlice';
-import Flag from './Flag';
+import PriorityBadge from './PriorityBadge';
 import TaskStatusBtn from './TaskStatusBtn';
 import TimeProgress from './TimeProgress';
 
@@ -47,6 +47,8 @@ const NBTaskItem: React.FC<Props> = ({item}) => {
           <TimeProgress
             startDate={item.date}
             endDate={item.deadLine ? item.deadLine : item.date}
+            textColor="white"
+            lineWidth="50%"
           />
 
           <HStack h="60%">
@@ -58,7 +60,7 @@ const NBTaskItem: React.FC<Props> = ({item}) => {
       </Box>
       <HStack justifyContent="space-between">
         <TaskStatusBtn status={item.status} />
-        {!item.completed && <Flag task={item} />}
+        {!item.completed && <PriorityBadge task={item} />}
       </HStack>
     </ZStack>
   );

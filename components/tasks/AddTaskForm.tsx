@@ -123,6 +123,8 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
               control={control}
               render={({field: {onChange}}) => (
                 <Radio.Group
+                  width="100%"
+                  justifyContent="space-around"
                   name="priority"
                   flexDirection="row"
                   onChange={onChange}>

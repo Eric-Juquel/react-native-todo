@@ -5,9 +5,16 @@ import dayjs from 'dayjs';
 interface Props {
   startDate: string;
   endDate: string;
+  textColor: string;
+  lineWidth: string | number;
 }
 
-const TimeProgress: React.FC<Props> = ({startDate, endDate}) => {
+const TimeProgress: React.FC<Props> = ({
+  startDate,
+  endDate,
+  textColor,
+  lineWidth,
+}) => {
   const date1 = dayjs(startDate);
   const date2 = dayjs(endDate);
   const today = dayjs(new Date().toISOString());
@@ -23,10 +30,10 @@ const TimeProgress: React.FC<Props> = ({startDate, endDate}) => {
 
   return (
     <HStack justifyContent="space-between" alignItems="center">
-      <Text fontSize="sm" color="white">
+      <Text fontSize="sm" color={textColor}>
         {startDate.split('T')[0]}
       </Text>
-      <Box w={'50%'}>
+      <Box w={lineWidth}>
         <Progress
           size="xs"
           value={timeProgress}
@@ -35,7 +42,7 @@ const TimeProgress: React.FC<Props> = ({startDate, endDate}) => {
           bg="coolGray.300"
         />
       </Box>
-      <Text fontSize="sm" color="white">
+      <Text fontSize="sm" color={textColor}>
         {endDate.split('T')[0]}
       </Text>
     </HStack>

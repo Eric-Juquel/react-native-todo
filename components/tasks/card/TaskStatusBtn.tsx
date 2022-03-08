@@ -22,14 +22,6 @@ const TaskStatusBtn: React.FC<Props> = ({status}) => {
             ? 'teal.400'
             : 'amber.400'
         }
-        // _pressed={{
-        //   bg:
-        //     status === 'To Do'
-        //       ? 'primary.700'
-        //       : status === 'Done'
-        //       ? 'teal.700'
-        //       : 'amber.400',
-        // }}
         alignSelf="flex-start"
         py="1"
         px="3">

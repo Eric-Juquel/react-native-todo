@@ -1,7 +1,8 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import {RootState} from '../redux/store';
-import {Box, Center, Divider, Heading, HStack, Stack, Text} from 'native-base';
+import {Box, Center, Divider, Heading, Stack, Text} from 'native-base';
+import TimeProgress from '../components/tasks/card/TimeProgress';
 
 const TaskDetailScreen = () => {
   const {task} = useSelector((state: RootState) => state.tasks);
@@ -20,10 +21,6 @@ const TaskDetailScreen = () => {
             borderColor: 'coolGray.600',
             backgroundColor: 'gray.700',
           }}
-          _web={{
-            shadow: 2,
-            borderWidth: 0,
-          }}
           _light={{
             backgroundColor: 'gray.50',
           }}>
@@ -34,30 +31,35 @@ const TaskDetailScreen = () => {
               </Heading>
             </Stack>
             <Divider my={1} />
-            <Stack h={240}>
+            <Stack h={160}>
               <Text fontWeight="400">
                 {task.description ? task.description : 'Add a description'}
               </Text>
             </Stack>
             <Divider my={1} />
-            <HStack alignItems="center" justifyContent="space-between" h={10}>
+            <Center h={16} flexDir="row">
+              <Text>Priority: </Text>
               <Text
-                color="coolGray.600"
-                _dark={{
-                  color: 'warmGray.200',
-                }}
-                fontWeight="400">
-                {task.date.split('T')[0]}
+                color={
+                  task.priority === 'Low'
+                    ? 'teal.500'
+                    : task.priority === 'Medium'
+                    ? 'amber.500'
+                    : 'red.500'
+                }>
+                {' '}
+                {task.priority}
               </Text>
-              <Text
-                color="coolGray.600"
-                _dark={{
-                  color: 'warmGray.200',
-                }}
-                fontWeight="400">
-                {task.deadLine ? task.deadLine.split('T')[0] : 'Undefined'}
-              </Text>
-            </HStack>
+            </Center>
+            <Divider my={1} />
+            <Center flexDir="row" h={8}>
+              <TimeProgress
+                startDate={task.date}
+                endDate={task.deadLine}
+                textColor="blueGray.500"
+                lineWidth="40%"
+              />
+            </Center>
           </Stack>
         </Box>
       </Center>

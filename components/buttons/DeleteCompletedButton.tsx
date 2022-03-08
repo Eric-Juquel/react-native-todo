@@ -35,7 +35,7 @@ const DeleteCompletedButton = () => {
         onClose={onClose}>
         <AlertDialog.Content>
           <AlertDialog.CloseButton />
-          <AlertDialog.Header>Delete Customer</AlertDialog.Header>
+          <AlertDialog.Header>Delete Completed Tasks</AlertDialog.Header>
           <AlertDialog.Body>
             This will remove all tasks completed. This action cannot be
             reversed. Deleted data can not be recovered.

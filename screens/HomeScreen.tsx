@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import TaskList from '../components/layout/TasksList';
-import AddTask from '../components/tasks/AddTask';
+import AddTaskForm from '../components/tasks/AddTaskForm';
 import Header from '../components/layout/Header';
 import {Box} from 'native-base';
 
@@ -10,7 +10,7 @@ const HomeScreen = () => {
     <Box bg="light.200" flex={1}>
       <Header setAddModal={setAddModal} />
       <TaskList />
-      <AddTask visible={addModal} setVisible={setAddModal} />
+      <AddTaskForm visible={addModal} setVisible={setAddModal} />
     </Box>
   );
 };

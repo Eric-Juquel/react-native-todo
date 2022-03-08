@@ -24,7 +24,7 @@
       "date": "2022-02-21T17:37:37.617Z",
       "completed": false,
       "priority": "High",
-      "status": "To Do",
+      "status": "In Progress",
       "id": 7
     },
     {
@@ -40,9 +40,9 @@
       "title": "Test Date",
       "description": "",
       "date": "2022-02-28T17:48:56.548Z",
-      "completed": false,
+      "completed": true,
       "priority": "Low",
-      "status": "In Progress",
+      "status": "Done",
       "deadLine": "2022-03-07T17:44:00.000Z",
       "id": 18
     },
@@ -52,7 +52,7 @@
       "date": "2022-03-04T10:46:45.508Z",
       "completed": false,
       "priority": "High",
-      "status": "To Do",
+      "status": "In Progress",
       "deadLine": "2022-03-09T10:45:00.000Z",
       "id": 19
     },
@@ -62,49 +62,9 @@
       "date": "2022-03-05T15:55:47.217Z",
       "status": "To Do",
       "completed": false,
-      "priority": "Medium",
+      "priority": "Low",
       "deadLine": "2022-03-05T15:50:47.908Z",
       "id": 21
-    },
-    {
-      "title": "Test",
-      "description": "",
-      "date": "2022-03-07T17:03:32.639Z",
-      "status": "Done",
-      "completed": true,
-      "priority": "Low",
-      "deadLine": "2022-03-07T17:02:35.447Z",
-      "id": 22
-    },
-    {
-      "title": "Test",
-      "description": "Some test",
-      "date": "2022-03-07T17:06:57.695Z",
-      "status": "In Progress",
-      "completed": false,
-      "priority": "Medium",
-      "deadLine": "2022-03-09T17:02:00.000Z",
-      "id": 23
-    },
-    {
-      "title": "Test priority",
-      "description": "",
-      "date": "2022-03-07T17:44:32.004Z",
-      "status": "To Do",
-      "completed": false,
-      "priority": "High",
-      "deadLine": "2022-03-07T17:43:47.872Z",
-      "id": 24
-    },
-    {
-      "title": "Test",
-      "description": "",
-      "date": "2022-03-07T17:44:59.408Z",
-      "status": "To Do",
-      "completed": false,
-      "priority": "Low",
-      "deadLine": "2022-03-07T17:43:47.872Z",
-      "id": 25
     },
     {
       "title": "Test medium",
@@ -115,6 +75,36 @@
       "priority": "Medium",
       "deadLine": "2022-03-10T17:43:00.000Z",
       "id": 26
+    },
+    {
+      "title": "Learn Storybook",
+      "description": "Tutorials and official doc",
+      "date": "2022-03-08T16:46:59.394Z",
+      "status": "To Do",
+      "completed": false,
+      "priority": "High",
+      "deadLine": "2022-03-10T16:20:00.000Z",
+      "id": 27
+    },
+    {
+      "title": "Learn Tailwind",
+      "description": "Installation and core concept + advanced",
+      "date": "2022-03-08T16:47:51.712Z",
+      "status": "In Progress",
+      "completed": false,
+      "priority": "Medium",
+      "deadLine": "2022-03-08T16:20:33.466Z",
+      "id": 28
+    },
+    {
+      "title": "Use Formik on React forms",
+      "description": "Loki",
+      "date": "2022-03-08T16:48:22.746Z",
+      "status": "To Do",
+      "completed": false,
+      "priority": "Low",
+      "deadLine": "2022-03-11T16:20:00.000Z",
+      "id": 29
     }
   ]
 }
