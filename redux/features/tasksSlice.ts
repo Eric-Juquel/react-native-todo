@@ -16,7 +16,7 @@ export interface Task {
   title: string;
   description: string;
   date: string;
-  status: Status;
+  status: 'To Do' | 'In Progress' | 'Done';
   completed: boolean | null;
   priority: Priority;
   deadLine: string;

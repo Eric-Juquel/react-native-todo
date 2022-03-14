@@ -37,16 +37,6 @@
       "id": 12
     },
     {
-      "title": "Test Date",
-      "description": "",
-      "date": "2022-02-28T17:48:56.548Z",
-      "completed": true,
-      "priority": "Low",
-      "status": "Done",
-      "deadLine": "2022-03-07T17:44:00.000Z",
-      "id": 18
-    },
-    {
       "title": "Test XS4MAC au bureau",
       "description": "",
       "date": "2022-03-04T10:46:45.508Z",
@@ -57,44 +47,34 @@
       "id": 19
     },
     {
+      "id": 21,
       "title": "Define color theme",
-      "description": "",
+      "description": "Updated  Task ",
       "date": "2022-03-05T15:55:47.217Z",
       "status": "To Do",
       "completed": false,
-      "priority": "Low",
-      "deadLine": "2022-03-05T15:50:47.908Z",
-      "id": 21
-    },
-    {
-      "title": "Test medium",
-      "description": "",
-      "date": "2022-03-07T17:47:07.636Z",
-      "status": "Done",
-      "completed": true,
       "priority": "Medium",
-      "deadLine": "2022-03-10T17:43:00.000Z",
-      "id": 26
+      "deadLine": "2022-03-17T15:50:00.000Z"
     },
     {
       "title": "Learn Storybook",
       "description": "Tutorials and official doc",
       "date": "2022-03-08T16:46:59.394Z",
-      "status": "To Do",
+      "status": "In Progress",
       "completed": false,
       "priority": "High",
       "deadLine": "2022-03-10T16:20:00.000Z",
       "id": 27
     },
     {
+      "id": 28,
       "title": "Learn Tailwind",
       "description": "Installation and core concept + advanced",
       "date": "2022-03-08T16:47:51.712Z",
       "status": "In Progress",
       "completed": false,
-      "priority": "Medium",
-      "deadLine": "2022-03-08T16:20:33.466Z",
-      "id": 28
+      "priority": "High",
+      "deadLine": "2022-03-16T16:20:00.000Z"
     },
     {
       "title": "Use Formik on React forms",
@@ -105,6 +85,16 @@
       "priority": "Low",
       "deadLine": "2022-03-11T16:20:00.000Z",
       "id": 29
+    },
+    {
+      "id": 30,
+      "title": "Test",
+      "description": "Test",
+      "date": "2022-03-14T18:48:55.119Z",
+      "status": "To Do",
+      "completed": false,
+      "priority": "Medium",
+      "deadLine": "2022-03-23T10:12:00.000Z"
     }
   ]
 }

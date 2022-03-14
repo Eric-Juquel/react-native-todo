@@ -1,67 +1,73 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {RootState} from '../redux/store';
-import {Box, Center, Divider, Heading, Stack, Text} from 'native-base';
-import TimeProgress from '../components/tasks/card/TimeProgress';
+import {Button, Center} from 'native-base';
+import AddTaskForm, {FormData} from '../components/tasks/AddTaskForm';
+import TaskDetails from '../components/tasks/details/TaskDetails';
 
 const TaskDetailScreen = () => {
   const {task} = useSelector((state: RootState) => state.tasks);
 
+  const [addModal, setAddModal] = useState<boolean>(false);
+
+  const defaultValues: FormData = {
+    title: task!.title,
+    description: task!.description,
+    deadLine: new Date(task!.deadLine),
+    priority: task!.priority,
+  };
+
   return (
     task && (
-      <Center flex={1} bg="light.200">
-        <Box
-          w={80}
-          h={400}
-          rounded="lg"
-          overflow="hidden"
-          borderColor="coolGray.200"
-          borderWidth="1"
-          _dark={{
-            borderColor: 'coolGray.600',
-            backgroundColor: 'gray.700',
-          }}
-          _light={{
-            backgroundColor: 'gray.50',
-          }}>
-          <Stack p="4" space={2}>
-            <Stack h={8}>
-              <Heading size="md" textAlign="center">
-                {task.title}
-              </Heading>
-            </Stack>
-            <Divider my={1} />
-            <Stack h={160}>
-              <Text fontWeight="400">
-                {task.description ? task.description : 'Add a description'}
-              </Text>
-            </Stack>
-            <Divider my={1} />
-            <Center h={16} flexDir="row">
-              <Text>Priority: </Text>
-              <Text
-                color={
-                  task.priority === 'Low'
-                    ? 'teal.500'
-                    : task.priority === 'Medium'
-                    ? 'amber.500'
-                    : 'red.500'
-                }>
-                {' '}
-                {task.priority}
-              </Text>
-            </Center>
-            <Divider my={1} />
-            <Center flexDir="row" h={8}>
-              <TimeProgress
-                startDate={task.date}
-                endDate={task.deadLine}
-                textColor="blueGray.500"
-                lineWidth="40%"
-              />
-            </Center>
-          </Stack>
-        </Box>
+      <Center
+        flex={1}
+        bg={
+          task.status === 'Done'
+            ? {
+                linearGradient: {
+                  colors: ['teal.600', 'teal.300'],
+                  start: [0, 0],
+                  end: [1, 1],
+                },
+              }
+            : task.status === 'To Do'
+            ? {
+                linearGradient: {
+                  colors: ['primary.600', 'lightBlue.300'],
+                  start: [0, 0],
+                  end: [1, 1],
+                },
+              }
+            : {
+                linearGradient: {
+                  colors: ['amber.600', 'amber.300'],
+                  start: [0, 0],
+                  end: [1, 1],
+                },
+              }
+        }>
+        {addModal === false ? (
+          <>
+            <TaskDetails task={task} />
+            <Button
+              shadow={3}
+              mt={20}
+              bgColor="blueGray.500"
+              onPress={() => setAddModal(true)}>
+              UPDATE
+            </Button>
+          </>
+        ) : (
+          <AddTaskForm
+            visible={addModal}
+            setVisible={setAddModal}
+            action="update"
+            id={task.id}
+            defaultValues={defaultValues}
+            date={task.date}
+            status={task.status}
+          />
+        )}
       </Center>
     )
   );

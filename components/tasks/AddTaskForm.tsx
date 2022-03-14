@@ -1,27 +1,40 @@
 import {TouchableWithoutFeedback, Keyboard} from 'react-native';
 import React from 'react';
-import {addTask} from '../../redux/services/taksServices';
+import {addTask, updateTask} from '../../redux/services/taksServices';
 import {useDispatch} from 'react-redux';
 
 import {Modal, Button, Input, TextArea, Text, Radio} from 'native-base';
 import {useForm, Controller} from 'react-hook-form';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {AppDispatch} from '../../redux/store';
-import {Priority} from '../../redux/features/tasksSlice';
+import {Priority, resetState} from '../../redux/features/tasksSlice';
+
+export interface FormData {
+  title: string;
+  description: string;
+  deadLine: Date;
+  priority: string;
+}
 
 interface Props {
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  action: 'create' | 'update';
+  id: number | undefined;
+  date?: string;
+  status?: string;
+  defaultValues: FormData;
 }
 
-interface FormData {
-  title: string;
-  description: string;
-  deadLine: Date;
-  priority: Priority;
-}
-
-const AddTask: React.FC<Props> = ({visible, setVisible}) => {
+const AddTask: React.FC<Props> = ({
+  visible,
+  setVisible,
+  action,
+  id,
+  defaultValues,
+  date = '',
+  status = 'To Do',
+}) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const {
@@ -30,26 +43,28 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
     reset,
     formState: {errors},
   } = useForm<FormData>({
-    defaultValues: {
-      title: '',
-      description: '',
-      deadLine: new Date(Date.now()),
-      priority: 'Low',
-    },
+    defaultValues,
   });
 
   const onSubmit = (data: FormData) => {
     console.log('data', data);
     const newTask = {
+      id,
       title: data.title,
       description: data.description,
-      date: new Date().toISOString(),
-      status: 'To Do',
+      date: action === 'create' ? new Date().toISOString() : date,
+      status,
       completed: false,
       priority: data.priority,
       deadLine: data.deadLine.toISOString(),
     };
-    dispatch(addTask(newTask));
+    if (action === 'create') {
+      dispatch(addTask(newTask));
+    } else {
+      dispatch(updateTask(newTask));
+      dispatch(resetState());
+    }
+
     reset();
     setVisible(false);
   };
@@ -65,7 +80,7 @@ const AddTask: React.FC<Props> = ({visible, setVisible}) => {
         onPress={() => {
           Keyboard.dismiss();
         }}>
-        <Modal.Content w={350} maxWidth="400px" mt={-260}>
+        <Modal.Content w={350} maxWidth="400px" mt={-220}>
           <Modal.CloseButton />
           <Modal.Header>New Task</Modal.Header>
           <Modal.Body>
