@@ -7,7 +7,7 @@ import {Modal, Button, Input, TextArea, Text, Radio} from 'native-base';
 import {useForm, Controller} from 'react-hook-form';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {AppDispatch} from '../../redux/store';
-import {Priority, resetState} from '../../redux/features/tasksSlice';
+import {resetState} from '../../redux/features/tasksSlice';
 
 export interface FormData {
   title: string;
@@ -16,24 +16,24 @@ export interface FormData {
   priority: string;
 }
 
+export interface DefaultValues extends FormData {
+  id?: number;
+  date: Date;
+  status: string;
+}
+
 interface Props {
   visible: boolean;
   setVisible: React.Dispatch<React.SetStateAction<boolean>>;
   action: 'create' | 'update';
-  id: number | undefined;
-  date?: string;
-  status?: string;
-  defaultValues: FormData;
+  defaultValues: DefaultValues | undefined;
 }
 
 const AddTask: React.FC<Props> = ({
   visible,
   setVisible,
   action,
-  id,
   defaultValues,
-  date = '',
-  status = 'To Do',
 }) => {
   const dispatch = useDispatch<AppDispatch>();
 
@@ -47,13 +47,13 @@ const AddTask: React.FC<Props> = ({
   });
 
   const onSubmit = (data: FormData) => {
-    console.log('data', data);
+    // console.log('data', data);
     const newTask = {
-      id,
+      id: defaultValues!.id,
+      date: defaultValues!.date.toISOString(),
+      status: defaultValues!.status,
       title: data.title,
       description: data.description,
-      date: action === 'create' ? new Date().toISOString() : date,
-      status,
       completed: false,
       priority: data.priority,
       deadLine: data.deadLine.toISOString(),
@@ -126,8 +126,8 @@ const AddTask: React.FC<Props> = ({
                   value={field.value}
                   display="compact"
                   mode="date"
-                  onChange={(e: Event, date?: Date | undefined) =>
-                    field.onChange(date)
+                  onChange={(e: Event, dateSelected?: Date | undefined) =>
+                    field.onChange(dateSelected)
                   }
                 />
               )}
@@ -142,7 +142,8 @@ const AddTask: React.FC<Props> = ({
                   justifyContent="space-around"
                   name="priority"
                   flexDirection="row"
-                  onChange={onChange}>
+                  onChange={onChange}
+                  defaultValue={defaultValues?.priority}>
                   <Radio value="Low" colorScheme="teal">
                     <Text mx={2}>Low</Text>
                   </Radio>

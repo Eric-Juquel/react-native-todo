@@ -98,7 +98,7 @@ const Flag: React.FC<Props> = ({task}) => {
               colorScheme={button.color}
               borderRadius="full"
               onPress={() => onUpdatePriority(button.name)}
-              icon={<Icon size={6} name="flag" color="white" />}
+              icon={<Icon size={6} name="flag" />}
             />
           ))}
         </Stagger>

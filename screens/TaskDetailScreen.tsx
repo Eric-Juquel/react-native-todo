@@ -1,21 +1,27 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {RootState} from '../redux/store';
 import {Button, Center} from 'native-base';
-import AddTaskForm, {FormData} from '../components/tasks/AddTaskForm';
+import AddTaskForm, {DefaultValues} from '../components/tasks/AddTaskForm';
 import TaskDetails from '../components/tasks/details/TaskDetails';
 
 const TaskDetailScreen = () => {
   const {task} = useSelector((state: RootState) => state.tasks);
 
+  const [defaultValues, setDefaultValues] = useState<DefaultValues | undefined>(
+    undefined,
+  );
   const [addModal, setAddModal] = useState<boolean>(false);
 
-  const defaultValues: FormData = {
-    title: task!.title,
-    description: task!.description,
-    deadLine: new Date(task!.deadLine),
-    priority: task!.priority,
-  };
+  useEffect(() => {
+    if (task) {
+      setDefaultValues(() => ({
+        ...task,
+        date: new Date(task.date),
+        deadLine: new Date(task.deadLine),
+      }));
+    }
+  }, [task]);
 
   return (
     task && (
@@ -62,10 +68,7 @@ const TaskDetailScreen = () => {
             visible={addModal}
             setVisible={setAddModal}
             action="update"
-            id={task.id}
             defaultValues={defaultValues}
-            date={task.date}
-            status={task.status}
           />
         )}
       </Center>

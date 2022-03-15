@@ -1,9 +1,8 @@
 import React from 'react';
 import {Box, Center, Text} from 'native-base';
-import {Status} from '../../../redux/features/tasksSlice';
 
 interface Props {
-  status: Status;
+  status: string;
 }
 
 const TaskStatusBtn: React.FC<Props> = ({status}) => {

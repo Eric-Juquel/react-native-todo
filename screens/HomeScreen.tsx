@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 import TaskList from '../components/layout/TasksList';
-import AddTaskForm, {FormData} from '../components/tasks/AddTaskForm';
+import AddTaskForm, {DefaultValues} from '../components/tasks/AddTaskForm';
 import Header from '../components/layout/Header';
 import {Box} from 'native-base';
 
 const HomeScreen = () => {
   const [addModal, setAddModal] = useState<boolean>(false);
 
-  const defaultValues: FormData = {
+  const defaultValues: Omit<DefaultValues, 'id'> = {
+    status: 'To Do',
+    date: new Date(),
     title: '',
     description: '',
     deadLine: new Date(),
@@ -22,7 +24,6 @@ const HomeScreen = () => {
         visible={addModal}
         setVisible={setAddModal}
         action="create"
-        id={undefined}
         defaultValues={defaultValues}
       />
     </Box>
